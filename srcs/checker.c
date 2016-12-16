@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 17:05:04 by zsmith            #+#    #+#             */
-/*   Updated: 2016/12/15 18:16:20 by zsmith           ###   ########.fr       */
+/*   Updated: 2016/12/16 00:18:30 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,23 @@ int		main(int argc, char **argv)
 		ft_put_error("Error\n");
 		return (0);
 	}
+	tab = (char **)ft_memalloc(sizeof(char *));
 	while (get_next_line(0, &line) == 1)
 	{
-		// ft_printf("gnl: %s\n", line);
-		ft_pushtab(&tab, line);
+		ft_printf("main:%s\n", line);
+		ft_printf("pre  &tab = %p\n", &tab);
+		push_str(&tab, line);
+		ft_printf("post &tab = %p\n", &tab);
+		ft_printf("main\n");
+		ft_puttab(tab);
+		free(line);
 	}
+	// ft_printf("[%s]>>", tab[0]);
+	// ft_printf("[%s]>>", tab[1]);
+	// ft_printf("[%s]>>", tab[2]);
+	// ft_printf("[%s]>>", tab[3]);
+	// ft_printf("tab[0] = %s\n", tab[0]);
+	// pushstr_tab(&tab, 0);
 	ft_putarr(a, argc);
 	return (0);	
 }
