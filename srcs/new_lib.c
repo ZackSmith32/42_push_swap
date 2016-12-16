@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 15:25:54 by zsmith            #+#    #+#             */
-/*   Updated: 2016/12/15 15:46:53 by zsmith           ###   ########.fr       */
+/*   Updated: 2016/12/15 18:16:36 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,25 @@ int		ft_pusharr(int **a, int num, int len)
 	*a = new;
 	i++;
 	return (i);
+}
+
+/*
+**	tab comes in as a tripple pointer
+**	this is so we can updae the tab without changing its address
+*/
+void	ft_pushtab(void *tab, void *ptr)
+{
+	int		i;
+	int		j;
+	void	*new;
+
+	i = 0;
+	while (*tab != 0)
+		i++;
+	new = (void *)ft_memalloc(sizeof(char *) * (i + 1));
+	j = -1;
+	while (++j < i)
+		new[j] = (*tab)[j];
+	new[j] = ptr;
+	new[++j] = 0;
 }

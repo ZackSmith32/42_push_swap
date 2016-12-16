@@ -6,16 +6,11 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 17:05:04 by zsmith            #+#    #+#             */
-/*   Updated: 2016/12/15 15:47:54 by zsmith           ###   ########.fr       */
+/*   Updated: 2016/12/15 18:16:20 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/checker.h"
-
-void	push_swap()
-{
-	return ;
-}
 
 int		data_validate(int argc, char **argv, int **a)
 {
@@ -41,23 +36,27 @@ int		data_validate(int argc, char **argv, int **a)
 int		main(int argc, char **argv)
 {
 	int		*a;
-	int		len;
+	char	*line;
+	char	**tab;
+	char	*buf;
+	int		ret;
+	int		i;
 
-	if (argc > 1)
-	{
-		argv++;
-		argc--;
-	}
-	else
+	if (argc <= 1)
 	{
 		ft_put_error("Error: number of arguments\n");
 		return (0);
 	}
 	a = (int *)ft_memalloc(sizeof(int) * 1);
-	if (!data_validate(argc, argv, &a))
+	if (!data_validate(--argc, ++argv, &a))
 	{
 		ft_put_error("Error\n");
 		return (0);
+	}
+	while (get_next_line(0, &line) == 1)
+	{
+		// ft_printf("gnl: %s\n", line);
+		ft_pushtab(&tab, line);
 	}
 	ft_putarr(a, argc);
 	return (0);	
