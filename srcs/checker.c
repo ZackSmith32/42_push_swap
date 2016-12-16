@@ -6,11 +6,68 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 17:05:04 by zsmith            #+#    #+#             */
-/*   Updated: 2016/12/16 00:18:30 by zsmith           ###   ########.fr       */
+/*   Updated: 2016/12/16 11:33:10 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/checker.h"
+
+void	dispatcher(t_stack stacks, char* op)
+{
+	if (!ft_strcmp(op, "sa"))
+		sa(stacks);
+	else if (!ft_strcmp(op, "sb"))
+		sb(stacks);
+	else if (!ft_strcmp(op, "ss"))
+		ss(stacks);
+	else if (!ft_strcmp(op, "pa"))
+		pa(stacks);
+	else if (!ft_strcmp(op, "pb"))
+		pb(stacks);
+	else if (!ft_strcmp(op, "ra"))
+		ra(stacks);
+	else if (!ft_strcmp(op, "ra"))
+		ra(stacks);
+	else if (!ft_strcmp(op, "rb"))
+		rb(stacks);
+	else if (!ft_strcmp(op, "rr"))
+		rr(stacks);
+	else if (!ft_strcmp(op, "rra"))
+		rra(stacks);
+	else if (!ft_strcmp(op, "rrb"))
+		rrb(stacks);
+	else if (!ft_strcmp(op, "rrr"))
+		rrr(stacks);
+}
+
+
+t_stack	*pop_stack_obj(int *a, int alen)
+{
+	ft_printf("pop_obj: in\n");
+	t_stack		*stacks;
+
+	stacks = (t_stack *)ft_memalloc(sizeof(t_stack));
+	stacks->a = a;
+	stacks->alen = alen;
+	stacks->b = (int *)ft_memalloc(sizeof(int));
+	stacks->blen = 0;
+	return (stacks);
+}
+
+void	checker(int *a, int alen, char **tab)
+{
+	int			i;
+	t_stack		*stacks;
+
+	stacks = pop_stack_obj(a, alen);
+	i = 0;
+	while (tab[i] != 0)
+	{
+		ft_printf("checker: top op: %s\n", ft_pop_str(tab));
+	 	// dispatcher(stacks, ft_pop_str(tab));
+	}
+
+}
 
 int		data_validate(int argc, char **argv, int **a)
 {
@@ -38,9 +95,6 @@ int		main(int argc, char **argv)
 	int		*a;
 	char	*line;
 	char	**tab;
-	char	*buf;
-	int		ret;
-	int		i;
 
 	if (argc <= 1)
 	{
@@ -56,20 +110,11 @@ int		main(int argc, char **argv)
 	tab = (char **)ft_memalloc(sizeof(char *));
 	while (get_next_line(0, &line) == 1)
 	{
-		ft_printf("main:%s\n", line);
-		ft_printf("pre  &tab = %p\n", &tab);
-		push_str(&tab, line);
-		ft_printf("post &tab = %p\n", &tab);
-		ft_printf("main\n");
+		ft_push_str(&tab, line);
 		ft_puttab(tab);
 		free(line);
 	}
-	// ft_printf("[%s]>>", tab[0]);
-	// ft_printf("[%s]>>", tab[1]);
-	// ft_printf("[%s]>>", tab[2]);
-	// ft_printf("[%s]>>", tab[3]);
-	// ft_printf("tab[0] = %s\n", tab[0]);
-	// pushstr_tab(&tab, 0);
+	checker(a, argc, tab);
 	ft_putarr(a, argc);
 	return (0);	
 }
