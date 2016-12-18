@@ -6,44 +6,45 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 17:05:04 by zsmith            #+#    #+#             */
-/*   Updated: 2016/12/16 11:33:10 by zsmith           ###   ########.fr       */
+/*   Updated: 2016/12/16 17:30:10 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/checker.h"
 
-void	dispatcher(t_stack stacks, char* op)
+void	dispatcher(t_stack *stacks, char* op)
 {
+	ft_printf("dispatcher: op = %s\n", op);
 	if (!ft_strcmp(op, "sa"))
-		sa(stacks);
+		op_s(stacks, 'a');
 	else if (!ft_strcmp(op, "sb"))
-		sb(stacks);
+		op_s(stacks, 'b');
 	else if (!ft_strcmp(op, "ss"))
-		ss(stacks);
+		op_s(stacks, 'c');
 	else if (!ft_strcmp(op, "pa"))
-		pa(stacks);
-	else if (!ft_strcmp(op, "pb"))
-		pb(stacks);
-	else if (!ft_strcmp(op, "ra"))
-		ra(stacks);
-	else if (!ft_strcmp(op, "ra"))
-		ra(stacks);
-	else if (!ft_strcmp(op, "rb"))
-		rb(stacks);
-	else if (!ft_strcmp(op, "rr"))
-		rr(stacks);
-	else if (!ft_strcmp(op, "rra"))
-		rra(stacks);
-	else if (!ft_strcmp(op, "rrb"))
-		rrb(stacks);
-	else if (!ft_strcmp(op, "rrr"))
-		rrr(stacks);
+		op_p(stacks, 'a');
+	// else if (!ft_strcmp(op, "pb"))
+	// 	pb(stacks);
+	// else if (!ft_strcmp(op, "ra"))
+	// 	ra(stacks);
+	// else if (!ft_strcmp(op, "ra"))
+	// 	ra(stacks);
+	// else if (!ft_strcmp(op, "rb"))
+	// 	rb(stacks);
+	// else if (!ft_strcmp(op, "rr"))
+	// 	rr(stacks);
+	// else if (!ft_strcmp(op, "rra"))
+	// 	rra(stacks);
+	// else if (!ft_strcmp(op, "rrb"))
+	// 	rrb(stacks);
+	// else if (!ft_strcmp(op, "rrr"))
+	// 	rrr(stacks);
 }
 
 
-t_stack	*pop_stack_obj(int *a, int alen)
+t_stack	*make_stack_obj(int *a, int alen)
 {
-	ft_printf("pop_obj: in\n");
+	// ft_printf("make_stack_obj: in\n");
 	t_stack		*stacks;
 
 	stacks = (t_stack *)ft_memalloc(sizeof(t_stack));
@@ -59,13 +60,16 @@ void	checker(int *a, int alen, char **tab)
 	int			i;
 	t_stack		*stacks;
 
-	stacks = pop_stack_obj(a, alen);
+	stacks = make_stack_obj(a, alen);
 	i = 0;
-	while (tab[i] != 0)
+	while (tab[0] != 0)
 	{
-		ft_printf("checker: top op: %s\n", ft_pop_str(tab));
-	 	// dispatcher(stacks, ft_pop_str(tab));
+		ft_printf("checker:");
+		ft_puttab(tab);
+	 	dispatcher(stacks, ft_pop_str(tab));
+	 	i++;
 	}
+	ft_printf("end con tab[%d] = %s\n", i, tab[i]);
 
 }
 
@@ -85,7 +89,7 @@ int		data_validate(int argc, char **argv, int **a)
 			else 
 				return (0);
 		}
-		i = ft_pusharr(a, ft_atoi(argv[i]), i);
+		i = ft_push_arr(a, ft_atoi(argv[i]), i);
 	}
 	return (1);
 }
@@ -111,11 +115,10 @@ int		main(int argc, char **argv)
 	while (get_next_line(0, &line) == 1)
 	{
 		ft_push_str(&tab, line);
-		ft_puttab(tab);
 		free(line);
 	}
 	checker(a, argc, tab);
-	ft_putarr(a, argc);
+	ft_put_arr(a, argc);
 	return (0);	
 }
 

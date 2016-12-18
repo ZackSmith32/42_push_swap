@@ -6,22 +6,24 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/17 23:20:16 by zsmith            #+#    #+#             */
-/*   Updated: 2016/12/15 17:08:00 by zsmith           ###   ########.fr       */
+/*   Updated: 2016/12/17 22:11:08 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-# include "libft.h"
+# include <unistd.h>
+# include "libft/libft.h"
+
 # define BUFF_SIZE 32
 
-typedef struct		s_g_list
+typedef struct		s_e_list
 {
 	int				fd;
 	void			*content;
 	size_t			content_size;
-	struct s_g_list	*next;
+	struct s_e_list	*next;
 }					t_a_list;
 
 int					get_next_line(const int fd, char **line);

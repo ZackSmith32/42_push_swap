@@ -6,7 +6,7 @@
 #    By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/14 23:11:31 by zsmith            #+#    #+#              #
-#    Updated: 2016/12/15 17:29:24 by zsmith           ###   ########.fr        #
+#    Updated: 2016/12/16 17:16:37 by zsmith           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ FLAGS	=	-c -Wall -Wextra -Werror
 CFILES	=	checker.c		\
 			new_lib.c		\
 			get_next_line.c	\
+			op_spr.c			\
 
 
 SRCDIR  =	srcs/

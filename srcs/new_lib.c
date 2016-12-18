@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 15:25:54 by zsmith            #+#    #+#             */
-/*   Updated: 2016/12/16 11:23:36 by zsmith           ###   ########.fr       */
+/*   Updated: 2016/12/16 17:26:24 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_put_error(char *str)
 	}	
 }
 
-void	ft_putarr(int *a, int len)
+void	ft_put_arr(int *a, int len)
 {
 	int		i;
 
@@ -33,7 +33,11 @@ void	ft_putarr(int *a, int len)
 	}
 }
 
-int		ft_pusharr(int **a, int num, int len)
+/*
+**	This is a realloc for an int pointer
+**	Update: take in an in pointer, make possible to add multiple ints
+*/
+int		ft_push_arr(int **a, int num, int len)
 {
 	int		*new;
 	int		i;
@@ -52,6 +56,27 @@ int		ft_pusharr(int **a, int num, int len)
 	return (i);
 }
 
+int		ft_pop_arr(int **a, int len)
+{
+	int		*new;
+	int		i;
+
+	new = (int *)ft_memalloc(sizeof(int) * len);
+	i = 1;
+	while (i < len)
+	{
+		new[i - 1] = (*a)[i];
+		i++;
+	}
+	i = (*a)[0];
+	return (i);
+}
+
+/*
+**	This is a realloc for a double pointer.  Pass in &tab, the function will place the address 
+**	to a new memory allocation in the place where the old pointer was.
+**	Update: create a realloc funcion.
+*/
 int		ft_push_str(char ***tab, char *ptr)
 {
 	int		i;
@@ -82,16 +107,27 @@ int		ft_push_str(char ***tab, char *ptr)
 
 char	*ft_pop_str(char **tab)
 {
+	// ft_printf("pop_str: in:\n");
+	// ft_puttab(tab);
 	int		i;
+	int		j;
 	char	*ret;
 
 	i = 0;
+	j = 0;
 	while (tab[i] != 0)
 		i++;
-	i--;
-	ret = ft_strdup(tab[i]);
-	free(tab[i]);
-	tab[i] = 0;
+	ret = ft_strdup(tab[0]);
+	while (j < i)
+	{
+		free(tab[j]);
+		tab[j] = ft_strdup(tab[j + 1]);
+		j++;
+	}
+	free(tab[j]);
+	tab[j] = 0;
+	// ft_puttab(tab);
+	// ft_printf("pop_str: out:\n");
 	return(ret);
 }
 
@@ -107,7 +143,12 @@ void	ft_keyhook(void)
 	write(1, "exited loop\n", 12);
 }
 
-
+void	ft_xor_swap(int *a, int *b)
+{
+	*a = *a ^ *b;
+	*b = *b ^ *a;
+	*a = *a ^ *b;
+}
 
 
 
