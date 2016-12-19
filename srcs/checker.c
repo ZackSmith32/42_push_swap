@@ -23,22 +23,25 @@ void	dispatcher(t_stack *stacks, char* op)
 		op_s(stacks, 'c');
 	else if (!ft_strcmp(op, "pa"))
 		op_p(stacks, 'a');
-	// else if (!ft_strcmp(op, "pb"))
-	// 	pb(stacks);
-	// else if (!ft_strcmp(op, "ra"))
-	// 	ra(stacks);
-	// else if (!ft_strcmp(op, "ra"))
-	// 	ra(stacks);
-	// else if (!ft_strcmp(op, "rb"))
-	// 	rb(stacks);
-	// else if (!ft_strcmp(op, "rr"))
-	// 	rr(stacks);
-	// else if (!ft_strcmp(op, "rra"))
-	// 	rra(stacks);
-	// else if (!ft_strcmp(op, "rrb"))
-	// 	rrb(stacks);
-	// else if (!ft_strcmp(op, "rrr"))
-	// 	rrr(stacks);
+	else if (!ft_strcmp(op, "pb"))
+		op_p(stacks, 'b');
+	else if (!ft_strcmp(op, "ra"))
+		op_r(stacks, 'a');
+	else if (!ft_strcmp(op, "rb"))
+		op_r(stacks, 'b');
+	else if (!ft_strcmp(op, "rr"))
+		op_r(stacks, 'r');
+	else if (!ft_strcmp(op, "rra"))
+		op_q(stacks, 'a');
+	else if (!ft_strcmp(op, "rrb"))
+		op_q(stacks, 'b');
+	else if (!ft_strcmp(op, "rrr"))
+		op_q(stacks, 'r');
+	ft_put_two_arr(stacks->a, stacks->alen, stacks->b, stacks->blen);
+	// ft_printf("a: alen = %d\n", stacks->alen);
+	// ft_put_arr(stacks->a, stacks->alen);
+	// ft_printf("b: blen = %d\n", stacks->blen);
+	// ft_put_arr(stacks->b, stacks->blen);
 }
 
 
@@ -64,13 +67,16 @@ void	checker(int *a, int alen, char **tab)
 	i = 0;
 	while (tab[0] != 0)
 	{
-		ft_printf("checker:");
+		ft_printf("command:");
 		ft_puttab(tab);
 	 	dispatcher(stacks, ft_pop_str(tab));
 	 	i++;
 	}
-	ft_printf("end con tab[%d] = %s\n", i, tab[i]);
-
+	free(stacks->a);
+	free(stacks->b);
+	free(stacks);
+	ft_free_tab(tab);
+	// ft_put_two_arr(stacks->a, stacks->alen, stacks->b, stacks->blen);
 }
 
 int		data_validate(int argc, char **argv, int **a)
@@ -91,8 +97,17 @@ int		data_validate(int argc, char **argv, int **a)
 		}
 		i = ft_push_arr(a, ft_atoi(argv[i]), i);
 	}
+	ft_printf("stack parsed:\n");
+	ft_put_arr(*a, i);
 	return (1);
 }
+
+/*
+**	issue discovered where the tab is populated with an empty space in it.
+**	issue occurs once about every 10 runs, textbook memory leak
+**	neet to check get_next_line for mem leaks and the tab parsing at the 
+**	botoom of main.
+*/
 
 int		main(int argc, char **argv)
 {
@@ -118,7 +133,6 @@ int		main(int argc, char **argv)
 		free(line);
 	}
 	checker(a, argc, tab);
-	ft_put_arr(a, argc);
 	return (0);	
 }
 

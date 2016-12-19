@@ -39,37 +39,57 @@ void	ft_put_arr(int *a, int len)
 */
 int		ft_push_arr(int **a, int num, int len)
 {
+	// ft_printf("push: in: num = %d; len = %d\n", num, len);
+	// ft_put_arr(*a, len);
+
 	int		*new;
 	int		i;
 
 	new = (int *)ft_memalloc(sizeof(int) * len + 1);
-	i = 0;
+	new[0] = num;
+	i = 1;
+	len++;
 	while (i < len)
 	{
-		new[i] = (*a)[i];
+		new[i] = (*a)[i - 1];
 		i++;
 	}
-	new[i] = num;
 	free(*a);
+	/*
+	**	need to figure out what the difference is between the following line
+	**	an a = &new
+	**	answer: a is the address of *a, the address of *a is used outside this funchtion
+	**	when you do a = &new you are pointin a somewhere else, but what you want is 
+	**	to change the memory that a is already pointing at.  hence the notation bellow.
+	*/
 	*a = new;
-	i++;
+	// ft_printf("push: out: i = %d\n", i);
+	// ft_put_arr(*a, i);
 	return (i);
 }
 
 int		ft_pop_arr(int **a, int len)
 {
+	// ft_printf("pop_arr: in: len = %d\n", len);
+	// ft_put_arr(*a, len);
 	int		*new;
+	int		ret;
 	int		i;
 
-	new = (int *)ft_memalloc(sizeof(int) * len);
+	ret = (*a)[0]; 
+	new = (int *)ft_memalloc(sizeof(int) * len - 1);
 	i = 1;
 	while (i < len)
 	{
 		new[i - 1] = (*a)[i];
 		i++;
 	}
-	i = (*a)[0];
-	return (i);
+	new[i - 1] = 0;
+	free(*a);
+	*a = new;
+	// ft_printf("pop_arr: out: ret = %d\n", ret);
+	// ft_put_arr(*a, len);
+	return (ret);
 }
 
 /*
@@ -101,6 +121,7 @@ int		ft_push_str(char ***tab, char *ptr)
 	}
 	new[j] = ft_strdup(ptr);
 	new[++j] = NULL;
+	free(*tab);
 	*tab = new;
 	return(j);
 }
@@ -132,11 +153,13 @@ char	*ft_pop_str(char **tab)
 }
 
 
-void	ft_keyhook(void)
+void	ft_keyhook(char c)
 {
 	char	buff[2];
+
 	while (1)
 	{
+		ft_printf("in while");
 		if (read(0, buff, 1))
 			break;
 	}
@@ -150,8 +173,61 @@ void	ft_xor_swap(int *a, int *b)
 	*a = *a ^ *b;
 }
 
+void	ft_rev_rotate(int **a, int len)
+{
+	int		i;
+	int		*new;
 
+	new = (int *)ft_memalloc(sizeof(int) * len);
+	new[0] = (*a)[len - 1];
+	i = 1;
+	while (i < len)
+	{
+		new[i] = (*a)[i - 1];
+		i++;
+	}
+	free(*a);
+	*a = new;
+}
 
+int		ft_greater_than(int a, int b)
+{
+	if (a >= b)
+		return 1;
+	else
+		return 0;
+}
+
+void 	ft_put_two_arr(int *a, int alen, int *b, int blen)
+{
+	int		i;
+
+	i = 0;
+	ft_printf("  A     B\n");
+	while (i < (ft_greater_than(alen, blen) ? alen : blen))
+	{
+		if (i < alen)
+			ft_printf("  %d", a[i]);
+		ft_printf("     ");
+		if (i < blen)
+			ft_printf("%d", b[i]);
+		ft_printf("\n");
+		i++;
+	}
+}
+
+void	ft_free_tab(char **tab)
+{
+	ft_printf("in free tab\n");
+	int 	i;
+	i = 0;
+	while (tab[i] != 0)
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
+}
 
 
 

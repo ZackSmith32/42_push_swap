@@ -15,7 +15,8 @@ FLAGS	=	-c -Wall -Wextra -Werror
 CFILES	=	checker.c		\
 			new_lib.c		\
 			get_next_line.c	\
-			op_spr.c			\
+			op_spr.c		\
+			test_mallocwrap.c\
 
 
 SRCDIR  =	srcs/
@@ -26,6 +27,7 @@ HDIR	=	includes/
 all: $(NAME)
 
 $(NAME):
+	@ gcc test/test.c -I includes/libft.h -L. lib/libftprintf.a -o main
 	@ gcc $(addprefix $(SRCDIR), $(CFILES)) -o $@ -I $(HDIR) -L. lib/libftprintf.a
 
 clean:

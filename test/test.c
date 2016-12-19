@@ -2,10 +2,10 @@
 
 int		main(void)
 {
-	ft_putstr("sa\npb\npb\npb\nss\npa");
+	ft_putstr("pb");
 	return (0);
 }
 
 /* 
-** gcc test/test.c -I includes/libft.h -L. lib/libft.a -o main
+** gcc test/test.c -I includes/libft.h -L. lib/libftprintf.a -o main
 */
