@@ -1,8 +1,8 @@
-#include "../includes/libft/libft.h"
+#include "../includes/libft.h"
 
 int		main(void)
 {
-	ft_putstr("pb");
+	ft_putstr("");
 	return (0);
 }
 

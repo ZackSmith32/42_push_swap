@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+         #
+#    By: mba <mba@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/14 23:11:31 by zsmith            #+#    #+#              #
-#    Updated: 2016/12/16 17:16:37 by zsmith           ###   ########.fr        #
+#    Updated: 2016/12/19 16:00:43 by mba              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,6 @@ NAME	=	checker
 FLAGS	=	-c -Wall -Wextra -Werror
 CFILES	=	checker.c		\
 			new_lib.c		\
-			get_next_line.c	\
 			op_spr.c		\
 			test_mallocwrap.c\
 
@@ -27,8 +26,8 @@ HDIR	=	includes/
 all: $(NAME)
 
 $(NAME):
-	@ gcc test/test.c -I includes/libft.h -L. lib/libftprintf.a -o main
-	@ gcc $(addprefix $(SRCDIR), $(CFILES)) -o $@ -I $(HDIR) -L. lib/libftprintf.a
+	gcc test/test.c -I $(HDIR) -L. lib/libftprintf.a -o main
+	gcc $(addprefix $(SRCDIR), $(CFILES)) -o $@ -I $(HDIR) -L. lib/libftprintf.a lib/libft.a
 
 clean:
 	@ /bin/rm -f $(OFILES)

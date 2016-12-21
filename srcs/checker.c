@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mba <mba@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 17:05:04 by zsmith            #+#    #+#             */
-/*   Updated: 2016/12/16 17:30:10 by zsmith           ###   ########.fr       */
+/*   Updated: 2016/12/19 23:27:33 by mba              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ int		main(int argc, char **argv)
 		ft_put_error("Error\n");
 		return (0);
 	}
-	tab = (char **)ft_memalloc(sizeof(char *));
+	tab = (char **)ft_memalloc(sizeof(char *) * 1);
 	while (get_next_line(0, &line) == 1)
 	{
 		ft_push_str(&tab, line);

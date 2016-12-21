@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mba <mba@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/12 10:28:52 by zsmith            #+#    #+#             */
-/*   Updated: 2016/12/17 21:28:51 by zsmith           ###   ########.fr       */
+/*   Updated: 2016/12/19 15:57:34 by mba              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <unistd.h>
 # include <stdarg.h>
 # include <wchar.h>
-# include "./libft/libft.h"
+# include "libft.h"
 
 typedef struct		s_a_list
 {

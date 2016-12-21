@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mba <mba@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 18:59:49 by zsmith            #+#    #+#             */
-/*   Updated: 2016/12/17 22:01:11 by zsmith           ###   ########.fr       */
+/*   Updated: 2016/12/19 15:44:04 by mba              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,8 @@
 
 #include <unistd.h>
 #include <fcntl.h>
-#include "./libft/libft.h"
+#include "libft.h"
 #include "ft_printf.h"
-#include "get_next_line.h"
 
 typedef struct		s_swap
 {
