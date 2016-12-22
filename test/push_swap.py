@@ -60,7 +60,7 @@ while (1):
 
 print ("stacka:", stacka)
 print ("stackb:", stackb)
-print ("commands:" , commands)
+print ("commands:" , len(commands), ": ",  commands)
 
 
 
