@@ -1,4 +1,5 @@
 from random import *
+# from bubble_srt import bubble
 import sys
 import os
 
@@ -22,6 +23,11 @@ class stack:
 		front = self.stack.pop()
 		self.stack.insert(0, front)
 		commands.append('r' + self.name)
+
+	def s(self):
+		front = self.stack.pop()
+		self.stack.insert(-1, front)
+		commands.append('s' + self.name)
 
 	def rr(self):
 		l = len(self.stack)
@@ -51,111 +57,128 @@ class stack:
 	**
 '''
 
-def	i_val(i, l):
-	if i == l:
-		return 0
-	if i < 0:
-		return (l - 1)
-	return i
-		
-def check_rotated(lst):
-	i = 0
-	index = 0
-	counter = 0
-	l = len(lst.stack)
-	if l == 0:
-		return
-	while (i + 1) < l:
-		if lst.stack[i] < lst.stack[i + 1]:
-			index = i
-			counter += 1
-		i += 1
-	if lst.stack[i] <= lst.stack[0]:
-		counter += 1
-		index = i
-	if counter <= 1:
-		return index
-	else:
-		return -1
+'''
+	> takes about 100 ops to move half the stack[100] to stack b
 
 '''
-	> pops out the smallest number in an array
-	> could potentially use the find shortest path from the pivot reset on this
-		> would mean breaking out the pivot reset to basically take an arg, then
-		figure out the shortest path to get that arg to the top of the stack
-'''
-def pop_min(lst, dest):
-	temp = list(lst.stack)
-	temp.sort()
-	min = temp[0]
-	while 1:
-		if lst.peak() == min:
-			lst.pop_x(dest)
-			return
-		lst.r()
 
-# finds the pivot of a sorted array, even if it is rotated
-def pivot(lst):
-	temp = list(lst)
-	l = len(temp)
-	while i < l:
-		if lst[i] < lst[i_val(i + 1)] and lst[i] < lst[i_val(i - 1)]:
-			return lst[i]
-		i += 1
 
-'''
-	> rotate string until pivot is in the top spot of the stack (the last spot)
-	> chose wheather to rotate or reverse rotate, whichever uses frewer commands
-	> takes a stack object as its argument
-'''
-def pivot_reset(lst, pivot):
-	l = lst.len()
 
-	if (l - pivot - 1) <= pivot:
-		print ("rotate right:l =",l , lst.stack)
-		while pivot < (l - 1):
-			print ("rotate while")
-			lst.r()
-			pivot += 1
-	else:
-		print ("rotate left:" , lst.stack)
-		while pivot >= 0:
-			lst.rr()
-			pivot -= 1
-
+num_digis = 100
 
 stacka = stack('a', [])
-z = 0
-while z < 4:
-	stacka.stack.append(randint(1, 100))
-	z += 1
 stackb = stack('b', [])
 commands = []
-sorta = list(stacka.stack)
-sorta.sort()
-min = sorta[0]
+temp = []
+for z in range(num_digis):
+	temp.append(randint(1, 100))
+# use list to make a duplicate of the list
+sort_temp = list(temp)
+sort_temp.sort()
+median = sort_temp[num_digis / 2]
+last_a = len(stacka.stack) - 1
+last_b = len(stackb.stack) - 1
+
+# remove dupes
+sort_temp = list(set(sort_temp))
+
+# change all values to their order number
+for i in range(num_digis):
+	k = sort_temp.index(temp[i])
+	# create tupe with order and val, but val not necessary
+	# stacka.stack.append((k, temp[i]))
+	stacka.stack.append(k)
+stacka.pop_x(stackb)
+
+
+def calc_ops(i):
+	num = stacka.stack[i]
+	k = 0
+	while k <= last_b:
+		if last_b == 0:
+			b_f_diff = 0
+			b_r_diff = 0
+			break
+		if (	num > stackb.stack[k]  and
+				num < stackb.stack[k + 1] ):
+			b_f_diff = last_b - k
+			b_r_diff = k + 1
+	a_f_diff = last_a - i
+	a_r_diff = i + 1
+
+	moves = ([	a_f_diff + b_r_diff,
+				a_r_diff + b_f_diff,
+				max([b_f_diff, a_f_diff]),
+				max([b_r_diff, a_r_diff])
+			], 
+			(b_f_diff, b_r_diff))
+	return moves
+
+
+def index_to_move():
+	num_ops = []
+	i = 0
+	while i < len(stacka.stack):
+		num_ops.append(min(calc_ops(i)[0]))
+		i += 1
+	print num_ops
+	lowest = 0
+	j = 0
+	while j < len(num_ops):
+		if (num_ops[j] < num_ops[lowest]):
+			lowest = j
+		j += 1
+	times = calc_ops(lowest)[0]
+	b_rot = calc_ops(lowest)[1]
+	print 'times', times
+	alg = times.index(min(times))
+	return ((lowest, alg), b_rot)
+
+def move_to_b(info):
+	index = info[0]
+	if (info[1] == 0):
+		for i in range(last_a - index):
+			stacka.r()
+		for i in range(last_b - 1):
+			PASS
+
+
+
+
+
+
+# figure out how man opperations to get each element to place where it 
+# needs to be in stack b.
+# first attempt will not move over elements that are not right next to
+# thier counterparts in stack b
 
 '''
-	this loop pops the lowst item from stack a (using pop_min) until
-	stack a is sorted.  Then rotates the list so that pivot is at the top
-	of stack
+	optimizations: once stack a gets small enough change technique
 '''
-print ("starting stack:", stacka.stack)
-while 1:
-	pivot = check_rotated(stacka)
-	if pivot != -1:
-		print ("stack rotated. pivot = ", pivot, stacka.stack, stackb.stack)
-		pivot_reset(stacka, pivot)
-		print ("stack oriented to pivot", stacka.stack)
-		break
-	pop_min(stacka, stackb)
 
-while len(stackb.stack) > 0:
-	stackb.pop_x(stacka)
+# while len(stacka.stack) > 1:
+info = index_to_move()
+# move_to_b(info)
+	# continue
+	# move(stacka.stack[index])
 
-print ("ordered stacka:", stacka.stack)
-print ("stackb:", stackb.stack)
-print ("length = ", len(commands), commands)
+print 'index', index
+
+
+# print ('stacka:' , stacka.stack)
+# print ('stackb:' , stackb.stack)
+# print ("commands.len() =", len(commands))
+# print (commands)
+
+
+exit()
+
+
+
+
+
+
+
 
 	
 
