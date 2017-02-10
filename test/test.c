@@ -1,8 +1,19 @@
+#include <stdio.h>
 #include "../includes/libft.h"
 
-int		main(void)
+int		main(int argc, char **argv)
 {
-	ft_putstr("");
+	int		i;
+
+	i = 1;
+	ft_putstr("rra\npb\nsa\nrra\npa\n");
+/*
+	while (i < argc)
+	{
+		printf("%s", argv[i]);
+		i++;
+	}
+*/
 	return (0);
 }
 

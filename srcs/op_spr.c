@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 11:33:34 by zsmith            #+#    #+#             */
-/*   Updated: 2016/12/16 17:23:30 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/02/09 14:52:38 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,12 @@ void	op_r(t_stack *stacks, char c)
 {
 	int		top;
 
-	if (c == 'a' || c == 'r')
+	if ((c == 'a' || c == 'r') && stacks->alen > 1)
 	{
 		top = ft_pop_arr(&stacks->a, stacks->alen);
 		stacks->a[stacks->alen - 1] = top;
 	}
-	if (c == 'b' || c == 'r')
+	if ((c == 'b' || c == 'r') && stacks->blen > 1)
 	{
 		top = ft_pop_arr(&stacks->b, stacks->blen);
 		stacks->b[stacks->blen - 1] = top;
@@ -78,11 +78,11 @@ void	op_r(t_stack *stacks, char c)
 
 void	op_q(t_stack *stacks, char c)
 {
-	if (c == 'a' || c == 'r')
+	if ((c == 'a' || c == 'r') && stacks->alen > 1)
 	{
 		ft_rev_rotate(&stacks->a, stacks->alen);
 	}
-	if (c == 'b' || c == 'r')
+	if ((c == 'b' || c == 'r') && stacks->blen > 1)
 	{
 		ft_printf("rotate b\n");
 		ft_rev_rotate(&stacks->b, stacks->blen);

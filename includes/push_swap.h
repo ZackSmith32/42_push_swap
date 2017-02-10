@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.h                                          :+:      :+:    :+:   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/14 18:59:49 by zsmith            #+#    #+#             */
-/*   Updated: 2017/02/09 12:57:19 by zsmith           ###   ########.fr       */
+/*   Created: 2017/02/09 10:20:45 by zsmith            #+#    #+#             */
+/*   Updated: 2017/02/09 15:43:33 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECKER_H
-# define CHECKER_H
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
 
 #include <unistd.h>
 #include <fcntl.h>
@@ -24,8 +24,8 @@ typedef struct		s_swap
 	int				alen;
 	int				*b;
 	int				blen;
-}					t_stack;
-
+}	
+				t_stack;
 /*
 **			parse
 */
@@ -68,11 +68,6 @@ void		op_s(t_stack *stacks, char c);
 void		op_p(t_stack *stacks, char c);
 void		op_r(t_stack *stacks, char c);
 void		op_q(t_stack *stacks, char c);
-
-
-
-
-
 
 
 #endif
