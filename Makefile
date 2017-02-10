@@ -6,7 +6,7 @@
 #    By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/14 23:11:31 by zsmith            #+#    #+#              #
-#    Updated: 2017/02/09 15:50:13 by zsmith           ###   ########.fr        #
+#    Updated: 2017/02/09 17:51:56 by zsmith           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,12 +35,13 @@ $(NAME):
 
 ps:
 	gcc srcs/push_swap.c $(addprefix $(SRCDIR), 	\
-		new_lib.c		\
-		op_spr.c		\
-		parse.c			\
-		arr_funx.c		\
-		str_funx.c		\
-		helpers.c)		\
+		new_lib.c			\
+		op_spr.c			\
+		parse.c				\
+		arr_funx.c			\
+		str_funx.c			\
+		helpers.c			\
+		stack_calculation.c)\
 		-o push_swap -I $(HDIR) -L. lib/libftprintf.a
 
 clean:

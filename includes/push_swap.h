@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 10:20:45 by zsmith            #+#    #+#             */
-/*   Updated: 2017/02/09 15:43:33 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/02/09 21:06:38 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,25 @@ typedef struct		s_swap
 	int				alen;
 	int				*b;
 	int				blen;
-}	
-				t_stack;
+}					t_stack;
+
+typedef struct		s_list_moves
+{
+	int				af;
+	int				ar;
+	int				bf;
+	int				br;
+	int				total;
+	int				strat;
+	int				index;
+}					t_moves;
+
+/*
+**			stack calculatin
+*/
+void		calc_b(t_stack *stacks, t_moves *moves, int num);
+void		calc_strategy(int af, int ar, int bf, t_moves *min);
+
 /*
 **			parse
 */
@@ -51,6 +68,8 @@ char		*ft_pop_str(char **tab);
 */
 void		ft_xor_swap(int *a, int *b);
 void		ft_rev_rotate(int **a, int len);
+int			ret_greater(int a, int b);
+void		print_moves(t_moves *moves);
 
 /*
 **			new_lib
