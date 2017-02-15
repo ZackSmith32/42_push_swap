@@ -33,6 +33,7 @@ static int	find_min(t_stack *stacks)
 	return (min_index);
 }
 
+//	returns max index
 static int	find_max(t_stack *stacks)
 {
 	int		i;
@@ -54,8 +55,11 @@ static void	regular_calc(t_stack *stacks, t_moves *moves, int num)
 	int		i;
 
 	i = 0;
-	if (num > (stacks->b)[0] && num < (stacks->b)[stacks->blen])
+	if (num > (stacks->b)[0] && num < (stacks->b)[stacks->blen - 1])
 	{
+		ft_printf("regular_calc >> num in between front and end\n");
+		ft_printf("num = %d, stacks[0] = %d, stacks[%d] = %d\n", num, stacks->b[0], stacks->blen, (stacks->b)[stacks->blen]);
+		ft_put_two_arr(stacks->a, stacks->alen, stacks->b, stacks->blen);
 		moves->bf = 0;
 		moves->br = 0;
 		return ;
@@ -72,30 +76,32 @@ static void	regular_calc(t_stack *stacks, t_moves *moves, int num)
 	}
 }
 
-// num is the number we are looking at in stack a
+// num is the number we are looking at in stack 'a'
 void	calc_b(t_stack *stacks, t_moves *moves, int num)
 {
 	int		i;
-	int		min;
-	int		max;
+	int		min_index;
+	int		max_index;
 
-	min = find_min(stacks);
-	max = find_max(stacks);
+	min_index = find_min(stacks);
+	max_index = find_max(stacks);
 	i = 0;
-	if (num < (stacks->b)[min])
+	if (num < (stacks->b)[min_index])
 	{
-		moves->bf = i;
-		moves->br = stacks->blen - i;
+		ft_printf("%@red@s\n", "min");
+		moves->bf = min_index + 1;
+		moves->br = stacks->blen - min_index - 1;
 	}
-	else if (num > (stacks->b)[max])
+	else if (num > (stacks->b)[max_index])
 	{
-		ft_printf("max num = %d, max = %d\n", num, max);
-		moves->bf = i;
-		moves->br = stacks->blen - i + 1;
+		ft_printf("%@red@s\n", "max");
+		ft_printf("max num = %d, max index = %d\n", num, max_index);
+		moves->bf = max_index;
+		moves->br = stacks->blen - max_index;
 	}
 	else
 	{
-		ft_printf("regular num = %d\n", num);
+		ft_printf("%@red@s %@red@d\n", "regular num =", num);
 		regular_calc(stacks, moves, num);
 	}
 }
@@ -107,21 +113,21 @@ void	calc_strategy(int af, int ar, int bf, t_moves *min)
 	br = min->br;
 	min->total = ret_greater(af, bf);
 	min->strat = 0;
-	if (ret_greater(ar, br) < min->total)
-	{
-		min->strat = 1;
-		min->total = ret_greater(af, bf);
-	}
-	if (af + br < min->total)
-	{
-		min->strat = 2;
-		min->total = af + br;
-	}
-	if (ar + bf < min->total)
-	{
-		min->strat = 3;
-		min->total = ar + bf;
-	}
+	// if (ret_greater(ar, br) < min->total)
+	// {
+	// 	min->strat = 1;
+	// 	min->total = ret_greater(af, bf);
+	// }
+	// if (af + br < min->total)
+	// {
+	// 	min->strat = 2;
+	// 	min->total = af + br;
+	// }
+	// if (ar + bf < min->total)
+	// {
+	// 	min->strat = 3;
+	// 	min->total = ar + bf;
+	// }
 }
 
 

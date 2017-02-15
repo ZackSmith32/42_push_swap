@@ -24,6 +24,7 @@ typedef struct		s_swap
 	int				alen;
 	int				*b;
 	int				blen;
+	char			**operations;
 }					t_stack;
 
 typedef struct		s_list_moves
@@ -36,6 +37,11 @@ typedef struct		s_list_moves
 	int				strat;
 	int				index;
 }					t_moves;
+
+/*
+ *			strategies.c
+ */
+void		strat_zero(t_stack *stacks, int af, int bf);
 
 /*
 **			stack calculatin

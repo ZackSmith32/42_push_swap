@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/checker.h"
+#include "../includes/push_swap.h"
 
 t_stack	*make_stack_obj(int *a, int alen)
 {
@@ -22,6 +22,8 @@ t_stack	*make_stack_obj(int *a, int alen)
 	stacks->alen = alen;
 	stacks->b = (int *)ft_memalloc(sizeof(int));
 	stacks->blen = 0;
+	stacks->operations = (char **)ft_memalloc(sizeof(char*));
+	stacks->operations[0] = 0;
 	return (stacks);
 }
 
@@ -33,6 +35,7 @@ int		data_validate(int argc, char **argv, int **a)
 	i = 0;
 	while (i < argc)
 	{
+		ft_printf("arg = %s\n", argv[i]);
 		j = 0;
 		while (argv[i][j] != '\0')
 		{

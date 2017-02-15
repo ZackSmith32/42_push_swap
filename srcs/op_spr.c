@@ -10,8 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/checker.h"
+#include "../includes/push_swap.h"
 
+// swap top element
 void	op_s(t_stack *stacks, char c)
 {
 	if (c == 'a' )
@@ -36,6 +37,7 @@ void	op_s(t_stack *stacks, char c)
 	}
 }
 
+// push
 void	op_p(t_stack *stacks, char c)
 {
 	if (c == 'a' && stacks->blen != 0)
@@ -44,6 +46,7 @@ void	op_p(t_stack *stacks, char c)
 			stacks->alen);
 		stacks->alen++;
 		stacks->blen--;
+		ft_push_str(&stacks->operations, "pa");
 	}
 	if (c == 'b' && stacks->alen != 0)
 	{
@@ -51,6 +54,8 @@ void	op_p(t_stack *stacks, char c)
 			stacks->blen);
 		stacks->blen++;
 		stacks->alen--;
+		ft_push_str(&stacks->operations, "pb");
+		// ft_printf("in pks->b, stacks->blen);
 		// ft_putstr("************\n");
 		// ft_printf("a:");
 		// ft_put_arr(stacks->a, stacks->alen);
@@ -60,22 +65,30 @@ void	op_p(t_stack *stacks, char c)
 	}
 }
 
+// forward rotate
 void	op_r(t_stack *stacks, char c)
 {
 	int		top;
+	char 	*str;
 
 	if ((c == 'a' || c == 'r') && stacks->alen > 1)
 	{
 		top = ft_pop_arr(&stacks->a, stacks->alen);
 		stacks->a[stacks->alen - 1] = top;
+		c == 'a' ? ft_push_str(&stacks->operations, "ra") 
+			: ft_push_str(&stacks->operations, "rr");
+		
 	}
 	if ((c == 'b' || c == 'r') && stacks->blen > 1)
 	{
 		top = ft_pop_arr(&stacks->b, stacks->blen);
 		stacks->b[stacks->blen - 1] = top;
+		if (c == 'b') 
+			ft_push_str(&stacks->operations, "rb");
 	}
 }
 
+// reverse rotate
 void	op_q(t_stack *stacks, char c)
 {
 	if ((c == 'a' || c == 'r') && stacks->alen > 1)

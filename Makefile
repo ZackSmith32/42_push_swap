@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	checker
+NAME	=	2checker
 FLAGS	=	-c -Wall -Wextra -Werror
 CFILES	=	checker.c			\
 			new_lib.c			\
@@ -30,7 +30,7 @@ HDIR	=	includes/
 all: $(NAME)
 
 $(NAME):
-	gcc test/test.c -I $(HDIR) -L. lib/libftprintf.a -o main
+	gcc test/test.c -I $(HDIR) -L. lib/libftprintf.a -o 3main
 	gcc $(addprefix $(SRCDIR), $(CFILES)) -o $@ -I $(HDIR) -L. lib/libftprintf.a
 
 ps:
@@ -41,11 +41,19 @@ ps:
 		arr_funx.c			\
 		str_funx.c			\
 		helpers.c			\
-		stack_calculation.c)\
-		-o push_swap -I $(HDIR) -L. lib/libftprintf.a
+		stack_calculation.c	\
+		strategies.c)		\
+		-o 1push_swap -I $(HDIR) -L. lib/libftprintf.a
+
+lib:
+	make re -C ~/printf/submission_dir/
+	cp ~/printf/submission_dir/libftprintf.a ./lib
+	make fclean -C ~/printf/submission_dir/
+
 
 clean:
 	@ /bin/rm -f $(OFILES)
+
 
 fclean: clean
 	@ /bin/rm -f $(NAME)

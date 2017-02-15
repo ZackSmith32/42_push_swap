@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/checker.h"
+#include "../includes/push_swap.h"
 
 /*
 **	This is a realloc for a double pointer.  Pass in &tab, the function will place the address 

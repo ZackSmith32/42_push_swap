@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/checker.h"
+#include "../includes/push_swap.h"
 
 void	ft_put_error(char *str)
 {
@@ -51,8 +51,9 @@ void 	ft_put_two_arr(int *a, int alen, int *b, int blen)
 	while (i < (ft_greater_than(alen, blen) ? alen : blen))
 	{
 		if (i < alen)
-			ft_printf("  %d", a[i]);
-		ft_printf("     ");
+			ft_printf("  %d     ", a[i]);
+		else 
+			ft_printf("        ");
 		if (i < blen)
 			ft_printf("%d", b[i]);
 		ft_printf("\n");
