@@ -6,7 +6,7 @@
 #    By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/14 23:11:31 by zsmith            #+#    #+#              #
-#    Updated: 2017/02/09 17:51:56 by zsmith           ###   ########.fr        #
+#    Updated: 2017/02/15 14:46:43 by zsmith           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,8 @@ ps:
 		str_funx.c			\
 		helpers.c			\
 		stack_calculation.c	\
-		strategies.c)		\
+		strategies.c		\
+		post_sort_funx.c)	\
 		-o 1push_swap -I $(HDIR) -L. lib/libftprintf.a
 
 lib:

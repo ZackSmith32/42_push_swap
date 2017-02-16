@@ -26,18 +26,10 @@ void	repeater(t_stack *stacks, char z, int a, void (*f)(t_stack*, char))
 
 /*
 **	strat 0 = af bf
-**	strat 1 = ar bf
+**	strat 1 = ar br
 **	strat 2 = af br
 **	strat 3 = ar bf
 */
-
-int		abs(int n)
-{
-	if (n < 0)
-		n = n * -1;
-	return n;
-}
-
 
 void	strat_zero(t_stack *stacks, int af, int bf)
 {
@@ -58,3 +50,77 @@ void	strat_zero(t_stack *stacks, int af, int bf)
 	}
 	op_p(stacks, 'b');
 }
+
+void	strat_one(t_stack *stacks, int ar, int br)
+{
+	int		i;
+	int		diff;
+
+	diff = ar - br;
+	if (diff <= 0)
+	{
+		repeater(stacks, 'r', ar, &op_q);
+		repeater(stacks, 'b', br - ar, &op_q);
+	}
+	if (diff > 0)
+	{
+		repeater(stacks, 'r', br, &op_q);
+		repeater(stacks, 'a', ar - br, &op_q);
+	}
+	op_p(stacks, 'b');
+}
+
+void	strat_two(t_stack *stacks, int ar, int br)
+{
+	repeater(stacks, 'a', ar, &op_r);
+	repeater(stacks, 'b', br, &op_q);
+	op_p(stacks, 'b');
+}
+
+void	strat_three(t_stack *stacks, int ar, int br)
+{
+	repeater(stacks, 'a', ar, &op_q);
+	repeater(stacks, 'b', br, &op_r);
+	op_p(stacks, 'b');
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

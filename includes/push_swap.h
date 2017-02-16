@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 10:20:45 by zsmith            #+#    #+#             */
-/*   Updated: 2017/02/09 21:06:38 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/02/15 22:13:16 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,28 @@ typedef struct		s_list_moves
 }					t_moves;
 
 /*
+ *			post_sort.c
+ */
+void		post_sort(t_stack *stacks);
+
+
+/*
  *			strategies.c
  */
+void		repeater(t_stack *stacks, char z, int a, void (*f)(t_stack*, char));
 void		strat_zero(t_stack *stacks, int af, int bf);
+void		strat_one(t_stack *stacks, int ar, int br);
+void		strat_two(t_stack *stacks, int ar, int br);
+void		strat_three(t_stack *stacks, int ar, int br);
 
 /*
 **			stack calculatin
 */
 void		calc_b(t_stack *stacks, t_moves *moves, int num);
 void		calc_strategy(int af, int ar, int bf, t_moves *min);
+int			find_max(int *stack, int len);
+int			find_min(int *stack, int len);
+
 
 /*
 **			parse

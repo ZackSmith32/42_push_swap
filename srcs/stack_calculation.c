@@ -6,44 +6,39 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 16:35:50 by zsmith            #+#    #+#             */
-/*   Updated: 2017/02/09 22:03:39 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/02/15 15:24:55 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-static int	find_min(t_stack *stacks)
+int	find_min(int *stack, int len)
 {
 	int		i;
 	int		min_index;
 
 	i = 0;
 	min_index = 0;
-	while (i < stacks->blen)
+	while (i < len)
 	{
-		// printf("blen = %d\n", stacks->blen);
-		if ((stacks->b)[i] < (stacks->b)[min_index])
-		{
+		if (stack[i] < stack[min_index])
 			min_index = i;
-			// ft_printf("min if, min = %d\n", min_index);
-		}
 		i++;
 	}
-	// ft_printf("in min min = %d\n", min_index);
 	return (min_index);
 }
 
 //	returns max index
-static int	find_max(t_stack *stacks)
+int	find_max(int *stack, int len)
 {
 	int		i;
 	int		max_index;
 
 	i = 0;
 	max_index = 0;
-	while (i < stacks->blen)
+	while (i < len)
 	{
-		if ((stacks->b)[i] > (stacks->b)[max_index])
+		if (stack[i] > stack[max_index])
 			max_index = i;
 		i++;
 	}
@@ -69,7 +64,7 @@ static void	regular_calc(t_stack *stacks, t_moves *moves, int num)
 		if (num < (stacks->b)[i] && num > (stacks->b)[i + 1])
 		{
 			moves->bf = i + 1;
-			moves->br = stacks->blen - i;
+			moves->br = stacks->blen - i - 1;
 			return ;
 		}
 		i++;
@@ -83,8 +78,8 @@ void	calc_b(t_stack *stacks, t_moves *moves, int num)
 	int		min_index;
 	int		max_index;
 
-	min_index = find_min(stacks);
-	max_index = find_max(stacks);
+	min_index = find_min(stacks->b, stacks->blen);
+	max_index = find_max(stacks->b, stacks->blen);
 	i = 0;
 	if (num < (stacks->b)[min_index])
 	{
@@ -113,21 +108,21 @@ void	calc_strategy(int af, int ar, int bf, t_moves *min)
 	br = min->br;
 	min->total = ret_greater(af, bf);
 	min->strat = 0;
-	// if (ret_greater(ar, br) < min->total)
-	// {
-	// 	min->strat = 1;
-	// 	min->total = ret_greater(af, bf);
-	// }
-	// if (af + br < min->total)
-	// {
-	// 	min->strat = 2;
-	// 	min->total = af + br;
-	// }
-	// if (ar + bf < min->total)
-	// {
-	// 	min->strat = 3;
-	// 	min->total = ar + bf;
-	// }
+	if (ret_greater(ar, br) < min->total)
+	{
+		min->strat = 1;
+		min->total = ret_greater(ar, br);
+	}
+	if (af + br < min->total)
+	{
+		min->strat = 2;
+		min->total = af + br;
+	}
+	if (ar + bf < min->total)
+	{
+		min->strat = 3;
+		min->total = ar + bf;
+	}
 }
 
 

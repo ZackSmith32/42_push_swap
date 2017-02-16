@@ -94,11 +94,15 @@ void	op_q(t_stack *stacks, char c)
 	if ((c == 'a' || c == 'r') && stacks->alen > 1)
 	{
 		ft_rev_rotate(&stacks->a, stacks->alen);
+		c == 'a' ? ft_push_str(&stacks->operations, "rra") 
+			: ft_push_str(&stacks->operations, "rrf");
 	}
 	if ((c == 'b' || c == 'r') && stacks->blen > 1)
 	{
 		ft_printf("rotate b\n");
 		ft_rev_rotate(&stacks->b, stacks->blen);
+		if (c == 'b') 
+			ft_push_str(&stacks->operations, "rrb");
 	}
 }
 
