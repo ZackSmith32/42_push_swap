@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 15:25:54 by zsmith            #+#    #+#             */
-/*   Updated: 2017/02/09 12:55:37 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/02/16 10:36:48 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,12 @@ void	ft_free_tab(char **tab)
 	i = 0;
 	while (tab[i] != 0)
 	{
+		ft_printf("address tab[%d] = %p\n", i, tab[i]);
 		free(tab[i]);
 		i++;
 	}
+	ft_printf("right before free outer tab\n");
 	free(tab);
+	ft_printf("out: free tab\n");
 }
 

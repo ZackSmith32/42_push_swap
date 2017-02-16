@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 10:19:08 by zsmith            #+#    #+#             */
-/*   Updated: 2017/02/16 09:37:13 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/02/16 12:38:46 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,17 +81,31 @@ void	eval_moves(t_stack *stacks, t_moves *moves)
 	free(min);
 }
 
+void	output(t_stack *stacks)
+{
+	int		i;
+
+	i = 0;
+	while (stacks->operations[i] != 0)
+	{
+		ft_printf("%s\n", *stacks->operations);
+		free(*(stacks->operations));
+		(stacks->operations)++;
+		i++;
+	}
+}
 
 void	push_swap(int *a, int alen)
 {
 	t_stack		*stacks;
 	t_moves		*moves;
 	int			i;
-
+	ft_printf("in: push_swap\n");
 	moves = (t_moves*)ft_memalloc(sizeof(t_moves));
 	stacks = make_stack_obj(a, alen);
 	op_p(stacks, 'b');
 	op_p(stacks, 'b');
+	ft_printf("after ops\n");
 	while (stacks->alen > 3)
 	{
 		eval_moves(stacks, moves);
@@ -99,6 +113,9 @@ void	push_swap(int *a, int alen)
 	}
 	ft_put_two_arr(stacks->a, stacks->alen, stacks->b, stacks->blen);
 	post_sort(stacks);
+	ft_puttab(stacks->operations);
+	ft_free_tab(stacks->operations);
+	// output(stacks);
 	ft_printf("%@cyan@s\n", "~~~~~~~~~~~~~~~~~~~~~~~~~~  FINAL ~~~~~~~~~~~~~~~~~~~~~~~~~~");
 	ft_put_two_arr(stacks->a, stacks->alen, stacks->b, stacks->blen);
 	i = 0;
@@ -106,6 +123,8 @@ void	push_swap(int *a, int alen)
 		i++;
 	ft_printf("%@cyan@s %@cyan@d\n", "count =", i);
 	ft_printf("%@cyan@s\n", "~~~~~~~~~~~~~~~~~~~~~~~~~~  FINAL ~~~~~~~~~~~~~~~~~~~~~~~~~~");
+	// ft_free_tab(stacks->operations);
+	// free(a);
 	free(stacks->a);
 	free(stacks->b);
 	free(stacks);
@@ -122,7 +141,7 @@ int		ft_word_count2(char const *s, char c)
 {
 	int		w;
 	int		i;
-	printf("new lib\n");
+
 	i = 0;
 	w = 0;
 	while (s[i] != '\0')
@@ -146,22 +165,26 @@ int		ft_word_count2(char const *s, char c)
 int		main(int argc, char **argv)
 {
 	int		*a;
+	char	**temp;
 
 	if (argc <= 1)
 	{
 		ft_put_error("Error\n");
 		return (0);
 	}
+	temp = (char **)ft_memalloc(sizeof(char *));
 	a = (int *)ft_memalloc(sizeof(int) * 1);
 	if (argc == 2)
 	{	
 		argc = ft_word_count(argv[1], ' ');
 		ft_printf("words = %d\n", argc);
-		if (!data_validate(argc, ft_strsplit(argv[1], ' '), &a))
+		temp = ft_strsplit(argv[1], ' ');
+		if (!data_validate(argc, temp, &a))
 		{
 			ft_put_error("Error data validate\n");
 			return (0);
 		}
+		ft_free_tab(temp);
 	}
 	// check for dupes
 	else if (!data_validate(--argc, ++argv, &a))

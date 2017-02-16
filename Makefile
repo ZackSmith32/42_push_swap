@@ -6,7 +6,7 @@
 #    By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/14 23:11:31 by zsmith            #+#    #+#              #
-#    Updated: 2017/02/15 14:46:43 by zsmith           ###   ########.fr        #
+#    Updated: 2017/02/16 12:34:08 by zsmith           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,8 @@ ps:
 		post_sort_funx.c)	\
 		-o 1push_swap -I $(HDIR) -L. lib/libftprintf.a
 
+		# test_mallocwrap.c\
+		
 lib:
 	make re -C ~/printf/submission_dir/
 	cp ~/printf/submission_dir/libftprintf.a ./lib

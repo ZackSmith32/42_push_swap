@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 11:43:31 by zsmith            #+#    #+#             */
-/*   Updated: 2017/02/09 21:08:18 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/02/16 11:33:11 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,17 @@
 
 t_stack	*make_stack_obj(int *a, int alen)
 {
-	// ft_printf("make_stack_obj: in\n");
 	t_stack		*stacks;
+	char		*temp;
 
+	temp = (char *)ft_memalloc(sizeof(char));
 	stacks = (t_stack *)ft_memalloc(sizeof(t_stack));
 	stacks->a = a;
 	stacks->alen = alen;
 	stacks->b = (int *)ft_memalloc(sizeof(int));
 	stacks->blen = 0;
 	stacks->operations = (char **)ft_memalloc(sizeof(char*));
-	stacks->operations[0] = 0;
+	// stacks->operations[0] = temp;
 	return (stacks);
 }
 
