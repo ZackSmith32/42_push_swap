@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 15:25:54 by zsmith            #+#    #+#             */
-/*   Updated: 2017/02/16 10:36:48 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/02/18 17:49:20 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,19 +61,19 @@ void 	ft_put_two_arr(int *a, int alen, int *b, int blen)
 	}
 }
 
+/*
+ *	only frees the contents of the tab
+ */
 void	ft_free_tab(char **tab)
 {
-	ft_printf("in free tab\n");
 	int 	i;
 	i = 0;
-	while (tab[i] != 0)
+	while (*tab != 0)
 	{
-		ft_printf("address tab[%d] = %p\n", i, tab[i]);
-		free(tab[i]);
+		free(*tab);
+		(tab)++;
 		i++;
 	}
-	ft_printf("right before free outer tab\n");
-	free(tab);
-	ft_printf("out: free tab\n");
+	free(*tab);
 }
 

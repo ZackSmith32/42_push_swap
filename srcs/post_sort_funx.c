@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/15 12:09:12 by zsmith            #+#    #+#             */
-/*   Updated: 2017/02/16 12:31:50 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/02/18 18:04:45 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,29 +48,29 @@ void	push_back(t_stack *stacks)
 		repeater(stacks, 'b', stacks->blen - find_max(b, stacks->blen), &op_q);
 	}
 	ft_printf("stack b should have biggest at the top\n");
-	ft_put_two_arr(stacks->a, stacks->alen, stacks->b, stacks->blen);
+	// ft_put_two_arr(stacks->a, stacks->alen, stacks->b, stacks->blen);
 	while (stacks->blen != 0)
 	{
 		// ft_printf("push back\n");
-		ft_printf("wmwmwmwmwmwmwmwmwmwmwmwmwmwmwmwmwmwmwmwmwmwmwmwmwmwmwmwmwmwmw\n");
-		ft_printf("\nb[0] = %d, a[last] = %d\n", stacks->b[0], stacks->a[stacks->alen - 1]);
-		ft_printf("a[0] = %d, find_min(a) = %d\n", stacks->a[0], stacks->a[find_min(stacks->a, stacks->alen)]);
-		ft_put_two_arr(stacks->a, stacks->alen, stacks->b, stacks->blen);
+		// ft_printf("wmwmwmwmwmwmwmwmwmwmwmwmwmwmwmwmwmwmwmwmwmwmwmwmwmwmwmwmwmwmw\n");
+		// ft_printf("\nb[0] = %d, a[last] = %d\n", stacks->b[0], stacks->a[stacks->alen - 1]);
+		// ft_printf("a[0] = %d, find_min(a) = %d\n", stacks->a[0], stacks->a[find_min(stacks->a, stacks->alen)]);
+		// ft_put_two_arr(stacks->a, stacks->alen, stacks->b, stacks->blen);
 		if (	stacks->b[0] < stacks->a[find_min(stacks->a, stacks->alen)] &&
 				stacks->a[0] == stacks->a[find_min(stacks->a, stacks->alen)])
 		{
-			ft_printf("push_back: push to a 1\n");
+			// ft_printf("push_back: push to a 1\n");
 			op_p(stacks, 'a');			
 		}
 		else if (stacks->b[0] > stacks->a[stacks->alen - 1])
 		{
-			ft_printf("push_back: push to a 2\n");
+			// ft_printf("push_back: push to a 2\n");
 			op_p(stacks, 'a');
 		}
 		else
 			op_q(stacks, 'a');
 	}
-	ft_printf("out: push back\n");
+	// ft_printf("out: push back\n");
 }
 
 int	sorted(int *a, int len)
@@ -113,7 +113,7 @@ void	post_sort(t_stack *stacks)
 		op_r(stacks, 'a');
 	if (stacks->a[2] == stacks->a[find_min(stacks->a, stacks->alen)])
 		op_q(stacks, 'a');
-	ft_put_two_arr(stacks->a, stacks->alen, stacks->b, stacks->blen);
+	// ft_put_two_arr(stacks->a, stacks->alen, stacks->b, stacks->blen);
 
 	push_back(stacks);
 	orientate(stacks);

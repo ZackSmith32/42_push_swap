@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 10:19:08 by zsmith            #+#    #+#             */
-/*   Updated: 2017/02/16 12:38:46 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/02/18 19:22:47 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	make_move(t_stack *stacks, t_moves *moves)
 	}
 	if (moves->strat == 3)
 		strat_three(stacks, moves->ar, moves->bf);
-	ft_printf("%@blue@s", "===============================\n");
+	// ft_printf("%@blue@s", "===============================\n");
 }
 
 
@@ -60,22 +60,23 @@ void	eval_moves(t_stack *stacks, t_moves *moves)
 	t_moves	*min;
 
 	min = (t_moves*)ft_memalloc(sizeof(t_moves));
-	ft_put_two_arr(stacks->a, stacks->alen, stacks->b, stacks->blen);
+	// ft_put_two_arr(stacks->a, stacks->alen, stacks->b, stacks->blen);
 	i = 0;
 	while (i < stacks->alen)
 	{
 		min->af = i;
 		min->ar = stacks->alen - i;
-		ft_printf("~~~~~ eval [%d] = %d~~~~~\n", i, stacks->a[i]);
+		// ft_printf("~~~~~ eval [%d] = %d~~~~~\n", i, stacks->a[i]);
 		calc_b(stacks, min, stacks->a[i]);
 		calc_strategy(min->af, min->ar, min->bf, min);
-		printf("af=%d, ar=%d, bf=%d, br=%d tot=%d\n", min->af,min->ar,min->bf,min->br, min->total);
+		// printf("af=%d, ar=%d, bf=%d, br=%d tot=%d\n", min->af,min->ar,min->bf,min->br, min->total);
 		if (i == 0 || moves->total > min->total)
 		{
-			ft_printf("%@green@s\n", "new min!");
+			// ft_printf("%@green@s\n", "new min!");
 			*moves = *min;
 		}
-		print_moves(moves);
+		// ft_printf("moves: %p, min: %p\n", moves, min);
+		// print_moves(moves);
 		i++;
 	}
 	free(min);
@@ -84,13 +85,21 @@ void	eval_moves(t_stack *stacks, t_moves *moves)
 void	output(t_stack *stacks)
 {
 	int		i;
+	int		j;
 
 	i = 0;
 	while (stacks->operations[i] != 0)
 	{
-		ft_printf("%s\n", *stacks->operations);
-		free(*(stacks->operations));
-		(stacks->operations)++;
+		j = 0;
+		while (stacks->operations[i][j] != 0)
+		{
+			write(0, &stacks->operations[i][j], 1);
+			j++;
+		}
+		write(0, "\n", 1);
+		// ft_printf("%s\n", *stacks->operations);
+		// free(*(stacks->operations));
+		// (stacks->operations)++;
 		i++;
 	}
 }
@@ -100,30 +109,32 @@ void	push_swap(int *a, int alen)
 	t_stack		*stacks;
 	t_moves		*moves;
 	int			i;
+
 	ft_printf("in: push_swap\n");
 	moves = (t_moves*)ft_memalloc(sizeof(t_moves));
 	stacks = make_stack_obj(a, alen);
 	op_p(stacks, 'b');
 	op_p(stacks, 'b');
-	ft_printf("after ops\n");
+	// ft_printf("after ops\n");
 	while (stacks->alen > 3)
 	{
 		eval_moves(stacks, moves);
 		make_move(stacks, moves) ;
 	}
-	ft_put_two_arr(stacks->a, stacks->alen, stacks->b, stacks->blen);
+	// ft_put_two_arr(stacks->a, stacks->alen, stacks->b, stacks->blen);
 	post_sort(stacks);
-	ft_puttab(stacks->operations);
-	ft_free_tab(stacks->operations);
-	// output(stacks);
-	ft_printf("%@cyan@s\n", "~~~~~~~~~~~~~~~~~~~~~~~~~~  FINAL ~~~~~~~~~~~~~~~~~~~~~~~~~~");
+	// ft_puttab(stacks->operations);
+	output(stacks);
+	// ft_printf("%@cyan@s\n", "~~~~~~~~~~~~~~~~~~~~~~~~~~  FINAL ~~~~~~~~~~~~~~~~~~~~~~~~~~");
 	ft_put_two_arr(stacks->a, stacks->alen, stacks->b, stacks->blen);
-	i = 0;
+	// i = 0;
 	while ((stacks->operations)[i] != 0)
 		i++;
-	ft_printf("%@cyan@s %@cyan@d\n", "count =", i);
-	ft_printf("%@cyan@s\n", "~~~~~~~~~~~~~~~~~~~~~~~~~~  FINAL ~~~~~~~~~~~~~~~~~~~~~~~~~~");
-	// ft_free_tab(stacks->operations);
+	ft_printf("%s%d\n", "count = ", i);
+	// ft_puttab(stacks->operations);
+	// ft_printf("%@cyan@s\n", "~~~~~~~~~~~~~~~~~~~~~~~~~~  FINAL ~~~~~~~~~~~~~~~~~~~~~~~~~~");
+	ft_free_tab(stacks->operations);
+	free(stacks->operations);
 	// free(a);
 	free(stacks->a);
 	free(stacks->b);
@@ -172,7 +183,7 @@ int		main(int argc, char **argv)
 		ft_put_error("Error\n");
 		return (0);
 	}
-	temp = (char **)ft_memalloc(sizeof(char *));
+	// temp = (char **)ft_memalloc(sizeof(char *));
 	a = (int *)ft_memalloc(sizeof(int) * 1);
 	if (argc == 2)
 	{	
@@ -185,6 +196,7 @@ int		main(int argc, char **argv)
 			return (0);
 		}
 		ft_free_tab(temp);
+		free(temp);
 	}
 	// check for dupes
 	else if (!data_validate(--argc, ++argv, &a))

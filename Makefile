@@ -6,7 +6,7 @@
 #    By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/14 23:11:31 by zsmith            #+#    #+#              #
-#    Updated: 2017/02/16 12:34:08 by zsmith           ###   ########.fr        #
+#    Updated: 2017/02/18 18:56:56 by zsmith           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ CFILES	=	checker.c			\
 			arr_funx.c			\
 			str_funx.c			\
 			helpers.c			\
-			test_mallocwrap.c	
+			get_next_line.c		\
+			# test_mallocwrap.c	
 
 
 SRCDIR  =	srcs/

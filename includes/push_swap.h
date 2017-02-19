@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 10:20:45 by zsmith            #+#    #+#             */
-/*   Updated: 2017/02/15 22:13:16 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/02/18 18:47:20 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <fcntl.h>
 #include "libft.h"
 #include "ft_printf.h"
+#include "get_next_line.h"
 
 typedef struct		s_swap
 {

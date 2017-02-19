@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 17:05:04 by zsmith            #+#    #+#             */
-/*   Updated: 2017/02/09 15:55:24 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/02/18 19:31:59 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,12 +73,12 @@ void	checker(int *a, int alen, char **tab)
 	int			i;
 	t_stack		*stacks;
 
-	ft_printf("in checker\n");
+	// ft_printf("in checker\n");
 	stacks = make_stack_obj(a, alen);
 	i = 0;
 	while (tab[0] != 0)
 	{
-		ft_printf("command:");
+		// ft_printf("command:");
 		ft_puttab(tab);
 	 	dispatcher(stacks, ft_pop_str(tab));
 	 	i++;
@@ -104,31 +104,28 @@ int		main(int argc, char **argv)
 	char	*line;
 	char	**tab;
 
+
 	if (argc <= 1)
 	{
 		ft_put_error("Error: number of arguments\n");
 		return (0);
 	}
 	a = (int *)ft_memalloc(sizeof(int) * 1);
-	if (!data_validate(--argc, ++argv, &a))
-	{
-		ft_put_error("Error data validate\n");
-		return (0);
-	}
 	tab = (char **)ft_memalloc(sizeof(char *) * 1);
-	// while (get_next_line(0, &line) == 1)
-	// {
-	// 	ft_push_str(&tab, line);
-	// 	free(line);
-	// }
+	while (get_next_line(0, &line) == 1)
+	{
+		ft_push_str(&tab, line);
+		free(line);
+	}
+	ft_puttab(tab);
 	// free(a);
-	ft_push_str(&tab, "sa");
-	ft_push_str(&tab, "sa");
-	ft_push_str(&tab, "sa");
-	ft_push_str(&tab, "sa");
-	ft_push_str(&tab, "sa");
+	// ft_push_str(&tab, "sa");
+	// ft_push_str(&tab, "sa");
+	// ft_push_str(&tab, "sa");
+	// ft_push_str(&tab, "sa");
+	// ft_push_str(&tab, "sa");
 	// ft_free_tab(tab);
-	checker(a, argc, tab);
+	// checker(a, argc, tab);
 	return (0);	
 }
 

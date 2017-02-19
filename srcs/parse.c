@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 11:43:31 by zsmith            #+#    #+#             */
-/*   Updated: 2017/02/16 11:33:11 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/02/18 19:35:32 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_stack	*make_stack_obj(int *a, int alen)
 	t_stack		*stacks;
 	char		*temp;
 
-	temp = (char *)ft_memalloc(sizeof(char));
+	// temp = (char *)ft_memalloc(sizeof(char));
 	stacks = (t_stack *)ft_memalloc(sizeof(t_stack));
 	stacks->a = a;
 	stacks->alen = alen;
@@ -47,7 +47,7 @@ int		data_validate(int argc, char **argv, int **a)
 		}
 		i = ft_append_arr(a, ft_atoi(argv[i]), i);
 	}
-	ft_printf("stack parsed:\n");
+	// ft_printf("stack parsed:\n");
 	ft_put_arr(*a, i);
 	return (1);
 }

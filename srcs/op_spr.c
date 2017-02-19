@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 11:33:34 by zsmith            #+#    #+#             */
-/*   Updated: 2017/02/16 12:04:32 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/02/18 19:35:41 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,13 @@ void	op_p(t_stack *stacks, char c)
 		stacks->alen--;
 		if (!stacks->operations[0])
 		{
-			ft_printf("operations has nothing in it\n");
+			// ft_printf("operations has nothing in it\n");
 		}
-		ft_puttab(stacks->operations);
-		ft_printf("after puttab\n");
+		// ft_puttab(stacks->operations);
+		// ft_printf("after puttab\n");
 		ft_push_str(&stacks->operations, "pb");
-		ft_printf("after push str tab = ");
-		ft_puttab(stacks->operations);
+		// ft_printf("after push str tab = ");
+		// ft_puttab(stacks->operations);
 		// ft_printf("in pks->b, stacks->blen);
 		// ft_putstr("************\n");
 		// ft_printf("a:");

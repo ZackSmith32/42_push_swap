@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 12:44:56 by zsmith            #+#    #+#             */
-/*   Updated: 2017/02/16 12:22:29 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/02/18 19:35:59 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 int		ft_push_str(char ***tab, char *ptr)
 {
-	ft_printf("in: push_str\n");
+	// ft_printf("in: push_str\n");
 	int		i;
 	int		j;
 	char	**new;
