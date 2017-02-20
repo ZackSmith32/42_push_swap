@@ -6,11 +6,11 @@
 #    By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/14 23:11:31 by zsmith            #+#    #+#              #
-#    Updated: 2017/02/18 18:56:56 by zsmith           ###   ########.fr        #
+#    Updated: 2017/02/19 19:22:49 by zsmith           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	2checker
+NAME	=	checker
 FLAGS	=	-c -Wall -Wextra -Werror
 CFILES	=	checker.c			\
 			new_lib.c			\
@@ -30,8 +30,8 @@ HDIR	=	includes/
 
 all: $(NAME)
 
-$(NAME):
-	gcc test/test.c -I $(HDIR) -L. lib/libftprintf.a -o 3main
+$(NAME): ps
+	gcc test/test.c -I $(HDIR) -L. lib/libftprintf.a -o main
 	gcc $(addprefix $(SRCDIR), $(CFILES)) -o $@ -I $(HDIR) -L. lib/libftprintf.a
 
 ps:
@@ -45,7 +45,7 @@ ps:
 		stack_calculation.c	\
 		strategies.c		\
 		post_sort_funx.c)	\
-		-o 1push_swap -I $(HDIR) -L. lib/libftprintf.a
+		-o push_swap -I $(HDIR) -L. lib/libftprintf.a
 
 		# test_mallocwrap.c\
 		

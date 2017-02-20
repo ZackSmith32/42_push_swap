@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/15 12:09:12 by zsmith            #+#    #+#             */
-/*   Updated: 2017/02/18 18:04:45 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/02/18 22:36:29 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,19 +35,19 @@ void	push_back(t_stack *stacks)
 	int		*b;
 	int		rot;
 	
-	ft_printf("in: push_back\n");
+	// ft_printf("in: push_back\n");
 	b = stacks->b;
 	if (find_max(b, stacks->blen) - (stacks->blen - find_max(b, stacks->blen)) <= 0)
 	{
-		ft_printf("bf time = %d\n", find_max(b, stacks->blen));
+		// ft_printf("bf time = %d\n", find_max(b, stacks->blen));
 		repeater(stacks, 'b', find_max(b, stacks->blen), &op_r);
 	}
 	else
 	{
-		ft_printf("br %d - %d = %d\n", stacks->blen, find_max(b, stacks->blen), stacks->blen - find_max(b, stacks->blen));
+		// ft_printf("br %d - %d = %d\n", stacks->blen, find_max(b, stacks->blen), stacks->blen - find_max(b, stacks->blen));
 		repeater(stacks, 'b', stacks->blen - find_max(b, stacks->blen), &op_q);
 	}
-	ft_printf("stack b should have biggest at the top\n");
+	// ft_printf("stack b should have biggest at the top\n");
 	// ft_put_two_arr(stacks->a, stacks->alen, stacks->b, stacks->blen);
 	while (stacks->blen != 0)
 	{
@@ -76,19 +76,27 @@ void	push_back(t_stack *stacks)
 int	sorted(int *a, int len)
 {
 	int		i;
-	int		max;
-	int		min;
+	int		max_index;
+	int		min_index;
 
-	max = find_max(a, len);
-	min = find_min(a, len);
+	max_index = find_max(a, len);
+	min_index = find_min(a, len);
 	i = 0;
-	while (	i < len - 1) 
-	{
-		if (	a[i] > a[i + 1]) 
-			if (a[i] != a[max] || a[i + 1] != a[min])
-				return (0);
-		i++;
-	}
+	if (max_index == 0 && min_index == 2)
+		return (0);
+	else if (max_index == 1 && min_index == 0)
+		return (0);
+	else if (max_index == 2 && min_index == 1)
+		return (0);
+	// while (	i < len - 1) 
+	// {
+
+	// 	if (	a[i] > a[i + 1]) 
+	// 		if (i == max_index && a[i + 1] == a[min])
+	// 			return (1);
+	// 		return (0);
+	// 	i++;
+	// }
 	return (1);
 }
 
@@ -106,7 +114,7 @@ void	post_sort(t_stack *stacks)
 {
 	if (!sorted(stacks->a, stacks->alen))
 	{
-		ft_printf("not sorted\n");
+		// ft_printf("not sorted\n");
 		op_s(stacks, 'a');
 	}
 	if (stacks->a[1] == stacks->a[find_min(stacks->a, stacks->alen)])
@@ -120,7 +128,7 @@ void	post_sort(t_stack *stacks)
 	// while i < alen
 		// check if sorted
 		// bubsort
-	ft_printf("out: post_sort\n");
+	// ft_printf("out: post_sort\n");
 }
 
 

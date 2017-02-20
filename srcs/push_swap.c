@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 10:19:08 by zsmith            #+#    #+#             */
-/*   Updated: 2017/02/18 19:22:47 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/02/19 19:28:51 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 
 void	make_move(t_stack *stacks, t_moves *moves)
 {
-	ft_printf("make_move\n");
+	// ft_printf("make_move\n");
 	if (moves->strat == 0)
 	{
 		strat_zero(stacks, moves->af, moves->bf);
@@ -93,10 +93,10 @@ void	output(t_stack *stacks)
 		j = 0;
 		while (stacks->operations[i][j] != 0)
 		{
-			write(0, &stacks->operations[i][j], 1);
+			write(1, &stacks->operations[i][j], 1);
 			j++;
 		}
-		write(0, "\n", 1);
+		write(1, "\n", 1);
 		// ft_printf("%s\n", *stacks->operations);
 		// free(*(stacks->operations));
 		// (stacks->operations)++;
@@ -110,7 +110,7 @@ void	push_swap(int *a, int alen)
 	t_moves		*moves;
 	int			i;
 
-	ft_printf("in: push_swap\n");
+	// ft_printf("in: push_swap\n");
 	moves = (t_moves*)ft_memalloc(sizeof(t_moves));
 	stacks = make_stack_obj(a, alen);
 	op_p(stacks, 'b');
@@ -126,11 +126,11 @@ void	push_swap(int *a, int alen)
 	// ft_puttab(stacks->operations);
 	output(stacks);
 	// ft_printf("%@cyan@s\n", "~~~~~~~~~~~~~~~~~~~~~~~~~~  FINAL ~~~~~~~~~~~~~~~~~~~~~~~~~~");
-	ft_put_two_arr(stacks->a, stacks->alen, stacks->b, stacks->blen);
+	// ft_put_two_arr(stacks->a, stacks->alen, stacks->b, stacks->blen);
 	// i = 0;
 	while ((stacks->operations)[i] != 0)
 		i++;
-	ft_printf("%s%d\n", "count = ", i);
+	// ft_printf("%s%d\n", "count = ", i);
 	// ft_puttab(stacks->operations);
 	// ft_printf("%@cyan@s\n", "~~~~~~~~~~~~~~~~~~~~~~~~~~  FINAL ~~~~~~~~~~~~~~~~~~~~~~~~~~");
 	ft_free_tab(stacks->operations);
@@ -188,7 +188,7 @@ int		main(int argc, char **argv)
 	if (argc == 2)
 	{	
 		argc = ft_word_count(argv[1], ' ');
-		ft_printf("words = %d\n", argc);
+		// ft_printf("words = %d\n", argc);
 		temp = ft_strsplit(argv[1], ' ');
 		if (!data_validate(argc, temp, &a))
 		{

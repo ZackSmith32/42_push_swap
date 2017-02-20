@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 17:05:04 by zsmith            #+#    #+#             */
-/*   Updated: 2017/02/18 19:31:59 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/02/19 21:39:37 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	dispatcher(t_stack *stacks, char* op)
 {
-	ft_printf("dispatcher: op = %s\n", op);
+	// ft_printf("dispatcher: op = %s\n", op);
 	if (!ft_strcmp(op, "sa"))
 		op_s(stacks, 'a');
 	else if (!ft_strcmp(op, "sb"))
@@ -38,7 +38,7 @@ void	dispatcher(t_stack *stacks, char* op)
 	else if (!ft_strcmp(op, "rrr"))
 		op_q(stacks, 'r');
 	free(op);
-	ft_put_two_arr(stacks->a, stacks->alen, stacks->b, stacks->blen);
+	// ft_put_two_arr(stacks->a, stacks->alen, stacks->b, stacks->blen);
 	// ft_printf("a: alen = %d\n", stacks->alen);
 	// ft_put_arr(stacks->a, stacks->alen);
 	// ft_printf("b: blen = %d\n", stacks->blen);
@@ -79,7 +79,8 @@ void	checker(int *a, int alen, char **tab)
 	while (tab[0] != 0)
 	{
 		// ft_printf("command:");
-		ft_puttab(tab);
+		// ft_printf("++++++++++++++++++++++++++++++++\n");
+		// ft_puttab(tab);
 	 	dispatcher(stacks, ft_pop_str(tab));
 	 	i++;
 	}
@@ -98,11 +99,43 @@ void	checker(int *a, int alen, char **tab)
 **	botom of main.
 */
 
+
+
+
+int		ft_push_str2(char ***tab, char *ptr)
+{
+	// ft_printf("in: push_str\n");
+	int		i;
+	int		j;
+	char	**new;
+
+	i = 0;
+	while ((*tab)[i] != 0)
+		i++;
+	new = (char **)ft_memalloc(sizeof(char *) * (i + 2));
+	ft_printf("i = %d, op = %s\n", i, ptr);
+
+	j = 0;
+	while (j < i)
+	{
+		new[j] = ft_strdup((*tab)[j]);
+		printf("%s\n", **tab);
+		// free(**tab);
+		j++;
+	}
+	new[j] = ft_strdup(ptr);
+	new[++j] = 0;
+	free(*tab);
+	*tab = new;
+	return(j);
+}
+
 int		main(int argc, char **argv)
 {
-	int		*a;
+	// int		*a;
 	char	*line;
 	char	**tab;
+	// char	**temp;
 
 
 	if (argc <= 1)
@@ -110,21 +143,63 @@ int		main(int argc, char **argv)
 		ft_put_error("Error: number of arguments\n");
 		return (0);
 	}
-	a = (int *)ft_memalloc(sizeof(int) * 1);
+	// a = (int *)ft_memalloc(sizeof(int) * 1);
+	// if (argc == 2)
+	// {	
+	// 	argc = ft_word_count(argv[1], ' ');
+	// 	temp = ft_strsplit(argv[1], ' ');
+	// 	if (!data_validate(argc, temp, &a))
+	// 	{
+	// 		ft_put_error("Error data validate\n");
+	// 		return (0);
+	// 	}
+	// 	ft_free_tab(temp);
+	// 	free(temp);
+	// }
+	// else if (!data_validate(--argc, ++argv, &a))
+ // 	{
+ // 		ft_put_error("Error data validate\n");
+ // 		return (0);
+ // 	}
+
+	int j = 0;
+	int z = 0;
 	tab = (char **)ft_memalloc(sizeof(char *) * 1);
 	while (get_next_line(0, &line) == 1)
 	{
-		ft_push_str(&tab, line);
+		// ft_printf("%s\n", line);
+		ft_push_str2(&tab, line);
+		if (	!(
+				!ft_strcmp(line, "pa") ||
+				!ft_strcmp(line, "pb") ||
+				!ft_strcmp(line, "sa") ||
+				!ft_strcmp(line, "sb") ||
+				!ft_strcmp(line, "ra") ||
+				!ft_strcmp(line, "rb") ||
+				!ft_strcmp(line, "rr") ||
+				!ft_strcmp(line, "rra") ||
+				!ft_strcmp(line, "rrb") ||
+				!ft_strcmp(line, "rrr")
+				)
+			)
+		{
+			printf("NO line = %s  ***********************************\n", tab[j]);
+			z = 1;
+		}
+		ft_bzero(line, ft_strlen(line));
 		free(line);
+		j++;
 	}
+	// int z = 0;
+	// while (tab[j] != 0)
+	// {
+	// 	ft_printf("%s\n", tab[j]);
+	// 	j++;
+	// }
 	ft_puttab(tab);
-	// free(a);
-	// ft_push_str(&tab, "sa");
-	// ft_push_str(&tab, "sa");
-	// ft_push_str(&tab, "sa");
-	// ft_push_str(&tab, "sa");
-	// ft_push_str(&tab, "sa");
-	// ft_free_tab(tab);
+	printf("count = %d\n", j);
+	if (z == 1)
+		ft_printf("there was an issue j = %d\n", j);
 	// checker(a, argc, tab);
 	return (0);	
 }

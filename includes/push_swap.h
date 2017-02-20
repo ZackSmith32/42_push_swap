@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 10:20:45 by zsmith            #+#    #+#             */
-/*   Updated: 2017/02/18 18:47:20 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/02/19 19:09:48 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,7 @@
 
 #include <unistd.h>
 #include <fcntl.h>
-#include "libft.h"
 #include "ft_printf.h"
-#include "get_next_line.h"
 
 typedef struct		s_swap
 {
@@ -39,6 +37,19 @@ typedef struct		s_list_moves
 	int				index;
 }					t_moves;
 
+typedef struct		s_gnl
+{
+	int				fd;
+	char			*content;
+	size_t			content_size;
+	struct s_gnl	*next;
+}					t_gnl;
+
+/*
+ *	get_next_line
+ */
+
+int			get_next_line(const int fd, char **line);
 /*
  *			post_sort.c
  */

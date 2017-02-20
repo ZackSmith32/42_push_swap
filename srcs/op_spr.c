@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 11:33:34 by zsmith            #+#    #+#             */
-/*   Updated: 2017/02/18 19:35:41 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/02/18 21:53:33 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,14 @@ void	op_s(t_stack *stacks, char c)
 		if (stacks->alen == 0 || stacks->alen == 1)
 			return;
 		ft_xor_swap(&(stacks->a[0]), &(stacks->a[1]));
+		ft_push_str(&stacks->operations, "sa");
 	}
 	if (c == 'b')
 	{
 		if (stacks->blen == 0 || stacks->blen == 1)
 			return ;
 		ft_xor_swap(&(stacks->b[0]), &(stacks->b[1]));
+		ft_push_str(&stacks->operations, "sb");
 	}
 	if (c == 'c')
 	{
@@ -34,13 +36,14 @@ void	op_s(t_stack *stacks, char c)
 			return ;
 		ft_xor_swap(&(stacks->a[0]), &(stacks->a[1]));
 		ft_xor_swap(&(stacks->b[0]), &(stacks->b[1]));
-	}
+		ft_push_str(&stacks->operations, "ss");
+}
 }
 
 // push
 void	op_p(t_stack *stacks, char c)
 {
-	ft_printf("in: op_p\n");
+	// ft_printf("in: op_p\n");
 	if (c == 'a' && stacks->blen != 0)
 	{
 		ft_push_arr(&(stacks->a), ft_pop_arr(&(stacks->b), stacks->blen),
@@ -104,11 +107,11 @@ void	op_q(t_stack *stacks, char c)
 	{
 		ft_rev_rotate(&stacks->a, stacks->alen);
 		c == 'a' ? ft_push_str(&stacks->operations, "rra") 
-			: ft_push_str(&stacks->operations, "rrf");
+			: ft_push_str(&stacks->operations, "rrr");
 	}
 	if ((c == 'b' || c == 'r') && stacks->blen > 1)
 	{
-		ft_printf("rotate b\n");
+		// ft_printf("rotate b\n");
 		ft_rev_rotate(&stacks->b, stacks->blen);
 		if (c == 'b') 
 			ft_push_str(&stacks->operations, "rrb");

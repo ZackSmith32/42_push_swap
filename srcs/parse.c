@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 11:43:31 by zsmith            #+#    #+#             */
-/*   Updated: 2017/02/18 19:35:32 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/02/18 20:26:50 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int		data_validate(int argc, char **argv, int **a)
 	i = 0;
 	while (i < argc)
 	{
-		ft_printf("arg = %s\n", argv[i]);
+		// ft_printf("arg[%d] = %s\n", i, argv[i]);
 		j = 0;
 		while (argv[i][j] != '\0')
 		{
@@ -48,6 +48,6 @@ int		data_validate(int argc, char **argv, int **a)
 		i = ft_append_arr(a, ft_atoi(argv[i]), i);
 	}
 	// ft_printf("stack parsed:\n");
-	ft_put_arr(*a, i);
+	// ft_put_arr(*a, i);
 	return (1);
 }
