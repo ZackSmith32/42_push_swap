@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 12:44:56 by zsmith            #+#    #+#             */
-/*   Updated: 2017/02/19 21:28:37 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/02/19 21:47:13 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ int		ft_push_str(char ***tab, char *ptr)
 	j = 0;
 	while (j < i)
 	{
-		new[j] = (*tab)[j];
+		new[j] = ft_strdup((*tab)[j]);
+		free((*tab)[j]);
 		j++;
 	}
 	new[j] = ft_strdup(ptr);
