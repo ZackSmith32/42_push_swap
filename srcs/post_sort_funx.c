@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/15 12:09:12 by zsmith            #+#    #+#             */
-/*   Updated: 2017/02/18 22:36:29 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/02/21 20:42:37 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,12 @@ void	push_back(t_stack *stacks)
 	if (find_max(b, stacks->blen) - (stacks->blen - find_max(b, stacks->blen)) <= 0)
 	{
 		// ft_printf("bf time = %d\n", find_max(b, stacks->blen));
-		repeater(stacks, 'b', find_max(b, stacks->blen), &op_r);
+		repeater_post(stacks, 'b', find_max(b, stacks->blen), &op_r);
 	}
 	else
 	{
 		// ft_printf("br %d - %d = %d\n", stacks->blen, find_max(b, stacks->blen), stacks->blen - find_max(b, stacks->blen));
-		repeater(stacks, 'b', stacks->blen - find_max(b, stacks->blen), &op_q);
+		repeater_post(stacks, 'b', stacks->blen - find_max(b, stacks->blen), &op_q);
 	}
 	// ft_printf("stack b should have biggest at the top\n");
 	// ft_put_two_arr(stacks->a, stacks->alen, stacks->b, stacks->blen);
@@ -112,9 +112,10 @@ void	orientate(t_stack *stacks)
 
 void	post_sort(t_stack *stacks)
 {
+	// printf("in post sort\n");
 	if (!sorted(stacks->a, stacks->alen))
 	{
-		// ft_printf("not sorted\n");
+		ft_printf("not sorted\n");
 		op_s(stacks, 'a');
 	}
 	if (stacks->a[1] == stacks->a[find_min(stacks->a, stacks->alen)])
@@ -125,9 +126,7 @@ void	post_sort(t_stack *stacks)
 
 	push_back(stacks);
 	orientate(stacks);
-	// while i < alen
-		// check if sorted
-		// bubsort
+
 	// ft_printf("out: post_sort\n");
 }
 

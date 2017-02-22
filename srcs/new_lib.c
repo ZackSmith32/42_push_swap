@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 15:25:54 by zsmith            #+#    #+#             */
-/*   Updated: 2017/02/18 17:49:20 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/02/22 10:57:39 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,6 @@ void	ft_put_error(char *str)
 		write(2, str, 1);
 		str++;
 	}	
-}
-
-void	ft_keyhook(char c)
-{
-	char	buff[2];
-
-	while (1)
-	{
-		ft_printf("in while");
-		if (read(0, buff, 1))
-			break;
-	}
-	write(1, "exited loop\n", 12);
 }
 
 int		ft_greater_than(int a, int b)

@@ -6,7 +6,7 @@
 #    By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/14 23:11:31 by zsmith            #+#    #+#              #
-#    Updated: 2017/02/19 19:22:49 by zsmith           ###   ########.fr        #
+#    Updated: 2017/02/22 10:58:19 by zsmith           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,8 +20,8 @@ CFILES	=	checker.c			\
 			str_funx.c			\
 			helpers.c			\
 			get_next_line.c		\
-			# test_mallocwrap.c	
 
+			# test_mallocwrap.c	
 
 SRCDIR  =	srcs/
 HDIR	=	includes/
@@ -44,7 +44,9 @@ ps:
 		helpers.c			\
 		stack_calculation.c	\
 		strategies.c		\
-		post_sort_funx.c)	\
+		post_sort_funx.c	\
+		ft_keyhook.c		\
+		print_funx.c)		\
 		-o push_swap -I $(HDIR) -L. lib/libftprintf.a
 
 		# test_mallocwrap.c\

@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 10:20:45 by zsmith            #+#    #+#             */
-/*   Updated: 2017/02/19 19:09:48 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/02/22 10:57:24 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct		s_swap
 	int				*b;
 	int				blen;
 	char			**operations;
+	// t_moves			**stacks_ptr;
 }					t_stack;
 
 typedef struct		s_list_moves
@@ -46,24 +47,34 @@ typedef struct		s_gnl
 }					t_gnl;
 
 /*
+ *	ft_keyhook
+ */
+int			ft_keyhook(char key);
+
+/*
+ *	print_funx
+ */
+void		repeater_post(t_stack *stacks, char z, int a, void (*f)(t_stack*, char));
+
+/*
  *	get_next_line
  */
 
 int			get_next_line(const int fd, char **line);
+
 /*
  *			post_sort.c
  */
 void		post_sort(t_stack *stacks);
 
-
 /*
  *			strategies.c
  */
-void		repeater(t_stack *stacks, char z, int a, void (*f)(t_stack*, char));
-void		strat_zero(t_stack *stacks, int af, int bf);
-void		strat_one(t_stack *stacks, int ar, int br);
-void		strat_two(t_stack *stacks, int ar, int br);
-void		strat_three(t_stack *stacks, int ar, int br);
+void		repeater(t_stack *stacks, char z, int a, void (*f)(t_stack*, char), t_moves *moves);
+void		strat_zero(t_stack *stacks, int af, int bf, t_moves *moves);
+void		strat_one(t_stack *stacks, int ar, int br, t_moves *moves);
+void		strat_two(t_stack *stacks, int ar, int br, t_moves *moves);
+void		strat_three(t_stack *stacks, int ar, int br, t_moves *moves);
 
 /*
 **			stack calculatin
@@ -108,7 +119,6 @@ void		print_moves(t_moves *moves);
 void		ft_put_error(char *str);
 void		ft_free_tab(char **tab);
 int			ft_greater_than(int a, int b);
-void		ft_keyhook(char c);
 void 		ft_put_two_arr(int *a, int alen, int *b, int blen);
 
 /*

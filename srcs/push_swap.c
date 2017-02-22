@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 10:19:08 by zsmith            #+#    #+#             */
-/*   Updated: 2017/02/19 19:28:51 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/02/21 20:43:03 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,21 +35,22 @@
 
 void	make_move(t_stack *stacks, t_moves *moves)
 {
+	// printf("make move\n");
 	// ft_printf("make_move\n");
 	if (moves->strat == 0)
 	{
-		strat_zero(stacks, moves->af, moves->bf);
+		strat_zero(stacks, moves->af, moves->bf, moves);
 	}
 	if (moves->strat == 1)
 	{
-		strat_one(stacks, moves->ar, moves->br);
+		strat_one(stacks, moves->ar, moves->br, moves);
 	}
 	if (moves->strat == 2)
 	{
-		strat_two(stacks, moves->af, moves->br);
+		strat_two(stacks, moves->af, moves->br, moves);
 	}
 	if (moves->strat == 3)
-		strat_three(stacks, moves->ar, moves->bf);
+		strat_three(stacks, moves->ar, moves->bf, moves);
 	// ft_printf("%@blue@s", "===============================\n");
 }
 
@@ -69,7 +70,7 @@ void	eval_moves(t_stack *stacks, t_moves *moves)
 		// ft_printf("~~~~~ eval [%d] = %d~~~~~\n", i, stacks->a[i]);
 		calc_b(stacks, min, stacks->a[i]);
 		calc_strategy(min->af, min->ar, min->bf, min);
-		// printf("af=%d, ar=%d, bf=%d, br=%d tot=%d\n", min->af,min->ar,min->bf,min->br, min->total);
+		// ft_printf("af=%d, ar=%d, bf=%d, br=%d tot=%d\n", min->af,min->ar,min->bf,min->br, min->total);
 		if (i == 0 || moves->total > min->total)
 		{
 			// ft_printf("%@green@s\n", "new min!");
@@ -119,15 +120,15 @@ void	push_swap(int *a, int alen)
 	while (stacks->alen > 3)
 	{
 		eval_moves(stacks, moves);
-		make_move(stacks, moves) ;
+		make_move(stacks, moves);
+		// ft_put_two_arr(stacks->a, stacks->alen, stacks->b, stacks->blen);
 	}
-	// ft_put_two_arr(stacks->a, stacks->alen, stacks->b, stacks->blen);
 	post_sort(stacks);
 	// ft_puttab(stacks->operations);
 	output(stacks);
 	// ft_printf("%@cyan@s\n", "~~~~~~~~~~~~~~~~~~~~~~~~~~  FINAL ~~~~~~~~~~~~~~~~~~~~~~~~~~");
-	// ft_put_two_arr(stacks->a, stacks->alen, stacks->b, stacks->blen);
-	// i = 0;
+	// ft_put_ two_arr(stacks->a, stacks->alen, stacks->b, stacks->blen);
+	i = 0;
 	while ((stacks->operations)[i] != 0)
 		i++;
 	// ft_printf("%s%d\n", "count = ", i);
