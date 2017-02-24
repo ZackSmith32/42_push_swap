@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 10:20:45 by zsmith            #+#    #+#             */
-/*   Updated: 2017/02/22 10:57:24 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/02/23 23:43:35 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct		s_list_moves
 	int				total;
 	int				strat;
 	int				index;
+	int				print_flag;
 }					t_moves;
 
 typedef struct		s_gnl
@@ -47,9 +48,15 @@ typedef struct		s_gnl
 }					t_gnl;
 
 /*
+ *	ft_putarr
+ */
+void	ft_putarr(int *a, int len);
+
+/*
  *	ft_keyhook
  */
 int			ft_keyhook(char key);
+void		fun_stacks(t_stack *stacks, t_moves *moves, int anum, int bnum);
 
 /*
  *	print_funx
@@ -88,8 +95,11 @@ int			find_min(int *stack, int len);
 /*
 **			parse
 */
-int			data_validate(int argc, char **argv, int **a);
+int			data_validate(int argc, char **argv, int **a, int num_flags);
 t_stack		*make_stack_obj(int *a, int alen);
+int			check_flags(int argc, char **argv);
+int			parse(int argc, char **argv, int **a, int num_flags);
+
 
 /*
 **			arr_funx

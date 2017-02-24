@@ -6,7 +6,7 @@
 #    By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/14 23:11:31 by zsmith            #+#    #+#              #
-#    Updated: 2017/02/22 10:58:19 by zsmith           ###   ########.fr        #
+#    Updated: 2017/02/23 23:51:48 by zsmith           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,7 @@ ps:
 		strategies.c		\
 		post_sort_funx.c	\
 		ft_keyhook.c		\
+		ft_putarr.c			\
 		print_funx.c)		\
 		-o push_swap -I $(HDIR) -L. lib/libftprintf.a
 

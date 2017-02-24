@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 17:05:04 by zsmith            #+#    #+#             */
-/*   Updated: 2017/02/19 22:13:17 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/02/23 23:29:23 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ int		main(int argc, char **argv)
 	{	
 		argc = ft_word_count(argv[1], ' ');
 		temp = ft_strsplit(argv[1], ' ');
-		if (!data_validate(argc, temp, &a))
+		if (!data_validate(argc, temp, &a, 0))
 		{
 			ft_put_error("Error data validate\n");
 			return (0);
@@ -129,7 +129,7 @@ int		main(int argc, char **argv)
 		ft_free_tab(temp);
 		free(temp);
 	}
-	else if (!data_validate(--argc, ++argv, &a))
+	else if (!data_validate(--argc, ++argv, &a, 0))
  	{
  		ft_put_error("Error data validate\n");
  		return (0);

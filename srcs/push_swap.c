@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 10:19:08 by zsmith            #+#    #+#             */
-/*   Updated: 2017/02/21 20:43:03 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/02/24 00:17:43 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ void	push_swap(int *a, int alen)
 	// ft_puttab(stacks->operations);
 	output(stacks);
 	// ft_printf("%@cyan@s\n", "~~~~~~~~~~~~~~~~~~~~~~~~~~  FINAL ~~~~~~~~~~~~~~~~~~~~~~~~~~");
-	// ft_put_ two_arr(stacks->a, stacks->alen, stacks->b, stacks->blen);
+	// ft_put_two_arr(stacks->a, stacks->alen, stacks->b, stacks->blen);
 	i = 0;
 	while ((stacks->operations)[i] != 0)
 		i++;
@@ -177,35 +177,21 @@ int		ft_word_count2(char const *s, char c)
 int		main(int argc, char **argv)
 {
 	int		*a;
-	char	**temp;
+	int		num_flags;
+	int		alen;
+	int 	test[] = { 1, 2, 4, 5, 6, 6};
 
 	if (argc <= 1)
 	{
 		ft_put_error("Error\n");
 		return (0);
 	}
-	// temp = (char **)ft_memalloc(sizeof(char *));
+	num_flags = check_flags(argc, argv);
 	a = (int *)ft_memalloc(sizeof(int) * 1);
-	if (argc == 2)
-	{	
-		argc = ft_word_count(argv[1], ' ');
-		// ft_printf("words = %d\n", argc);
-		temp = ft_strsplit(argv[1], ' ');
-		if (!data_validate(argc, temp, &a))
-		{
-			ft_put_error("Error data validate\n");
-			return (0);
-		}
-		ft_free_tab(temp);
-		free(temp);
-	}
-	// check for dupes
-	else if (!data_validate(--argc, ++argv, &a))
-	{
-		ft_put_error("Error data validate\n");
-		return (0);
-	}
-	push_swap(a, argc);
+	alen = parse(argc, argv, &a, num_flags);
+	ft_putarr(a, alen);
+	ft_putarr(test, 6);
+	push_swap(a, alen);
 	return (0);
 }
 
