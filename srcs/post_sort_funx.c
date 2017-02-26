@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/15 12:09:12 by zsmith            #+#    #+#             */
-/*   Updated: 2017/02/21 20:42:37 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/02/25 20:47:14 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ void	post_sort(t_stack *stacks)
 	// printf("in post sort\n");
 	if (!sorted(stacks->a, stacks->alen))
 	{
-		ft_printf("not sorted\n");
+		// ft_printf("not sorted\n");
 		op_s(stacks, 'a');
 	}
 	if (stacks->a[1] == stacks->a[find_min(stacks->a, stacks->alen)])

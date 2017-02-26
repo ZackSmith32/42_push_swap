@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 10:20:45 by zsmith            #+#    #+#             */
-/*   Updated: 2017/02/23 23:43:35 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/02/25 21:14:50 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ typedef struct		s_swap
 	int				*b;
 	int				blen;
 	char			**operations;
-	// t_moves			**stacks_ptr;
+	int				print_flag;
 }					t_stack;
 
 typedef struct		s_list_moves
@@ -36,7 +36,6 @@ typedef struct		s_list_moves
 	int				total;
 	int				strat;
 	int				index;
-	int				print_flag;
 }					t_moves;
 
 typedef struct		s_gnl
@@ -47,10 +46,16 @@ typedef struct		s_gnl
 	struct s_gnl	*next;
 }					t_gnl;
 
+typedef struct		s_m_d
+{
+	int				a;
+	char			z;
+}					t_move_dir;
+
 /*
  *	ft_putarr
  */
-void	ft_putarr(int *a, int len);
+void		ft_putarr(int *a, int len);
 
 /*
  *	ft_keyhook
@@ -62,6 +67,8 @@ void		fun_stacks(t_stack *stacks, t_moves *moves, int anum, int bnum);
  *	print_funx
  */
 void		repeater_post(t_stack *stacks, char z, int a, void (*f)(t_stack*, char));
+t_move_dir 	make_md(char z, int a);
+
 
 /*
  *	get_next_line
@@ -77,7 +84,8 @@ void		post_sort(t_stack *stacks);
 /*
  *			strategies.c
  */
-void		repeater(t_stack *stacks, char z, int a, void (*f)(t_stack*, char), t_moves *moves);
+void		repeater(t_stack *stacks, t_move_dir data, void (*f)(t_stack*, char), 
+				t_moves *moves);
 void		strat_zero(t_stack *stacks, int af, int bf, t_moves *moves);
 void		strat_one(t_stack *stacks, int ar, int br, t_moves *moves);
 void		strat_two(t_stack *stacks, int ar, int br, t_moves *moves);
@@ -95,8 +103,8 @@ int			find_min(int *stack, int len);
 /*
 **			parse
 */
-int			data_validate(int argc, char **argv, int **a, int num_flags);
-t_stack		*make_stack_obj(int *a, int alen);
+int			data_validate(int argc, char **argv, int **a);
+t_stack		*make_stack_obj(int *a, int alen, int num_flags);
 int			check_flags(int argc, char **argv);
 int			parse(int argc, char **argv, int **a, int num_flags);
 
@@ -127,6 +135,7 @@ void		print_moves(t_moves *moves);
 **			new_lib
 */
 void		ft_put_error(char *str);
+int			ft_put_error_bool(int bool, char *str);
 void		ft_free_tab(char **tab);
 int			ft_greater_than(int a, int b);
 void 		ft_put_two_arr(int *a, int alen, int *b, int blen);

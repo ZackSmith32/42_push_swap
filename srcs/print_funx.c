@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/20 15:40:34 by zsmith            #+#    #+#             */
-/*   Updated: 2017/02/23 22:03:49 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/02/25 21:10:07 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,3 +71,11 @@ void	fun_stacks(t_stack *stacks, t_moves *moves, int anum, int bnum)
 	ft_keyhook('\n');
 }
 
+t_move_dir make_md(char z, int a)
+{
+	t_move_dir	data;
+
+	data.a = a;
+	data.z = z;
+	return (data);
+}

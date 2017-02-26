@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 17:05:04 by zsmith            #+#    #+#             */
-/*   Updated: 2017/02/23 23:29:23 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/02/25 21:15:15 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	checker(int *a, int alen, char **tab)
 	t_stack		*stacks;
 
 	// ft_printf("in checker\n");
-	stacks = make_stack_obj(a, alen);
+	stacks = make_stack_obj(a, alen, 0);
 	i = 0;
 	while (tab[0] != 0)
 	{
@@ -121,7 +121,7 @@ int		main(int argc, char **argv)
 	{	
 		argc = ft_word_count(argv[1], ' ');
 		temp = ft_strsplit(argv[1], ' ');
-		if (!data_validate(argc, temp, &a, 0))
+		if (!data_validate(argc, temp, &a))
 		{
 			ft_put_error("Error data validate\n");
 			return (0);
@@ -129,7 +129,7 @@ int		main(int argc, char **argv)
 		ft_free_tab(temp);
 		free(temp);
 	}
-	else if (!data_validate(--argc, ++argv, &a, 0))
+	else if (!data_validate(--argc, ++argv, &a))
  	{
  		ft_put_error("Error data validate\n");
  		return (0);

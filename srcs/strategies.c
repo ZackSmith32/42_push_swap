@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 22:14:55 by zsmith            #+#    #+#             */
-/*   Updated: 2017/02/23 22:07:14 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/02/25 21:18:54 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,25 +23,30 @@
  */
 
 
-void	repeater(t_stack *stacks, char z, int a, void (*f)(t_stack*, char), t_moves *moves)
+void	repeater(t_stack *stacks, t_move_dir data, void (*f)(t_stack*, char), t_moves *moves)
 {
 	int		i;
-	int		which_stack;
 	int		anum;
 	int		bnum;
+	int		a;
+	char	z;
 
 	i = 0;
+	a = data.a;
+	z = data.z;
 	anum = stacks->a[moves->af];
 	bnum = stacks->b[moves->bf];
 	if (a == 0)
 		return ;
 	printf("anum = %d, bnum = %d\n", anum, bnum);
-	printf("before while\n");
-	fun_stacks(stacks, moves, anum, bnum);
+	printf("before while print_flag = %d\n", stacks->print_flag);
+	if (stacks->print_flag != 0)
+		fun_stacks(stacks, moves, anum, bnum);
 	while (i < a)
 	{
 		printf("in while\n");
 		f(stacks, z);
+	if (stacks->print_flag != 0)
 		fun_stacks(stacks, moves, anum, bnum);
 		i++;
 	}
@@ -57,19 +62,21 @@ void	repeater(t_stack *stacks, char z, int a, void (*f)(t_stack*, char), t_moves
 
 void	strat_zero(t_stack *stacks, int af, int bf, t_moves *moves)
 {
+	t_move_dir	data;
+
 	ft_printf("strat 0\n");
 	int		i;
 	int		diff;
 	diff = af - bf;
 	if (diff <= 0)
 	{
-		repeater(stacks, 'r', af, &op_r, moves);
-		repeater(stacks, 'b', bf - af, &op_r, moves);
+		repeater(stacks, make_md('r', af), &op_r, moves);
+		repeater(stacks, make_md('b', bf - af), &op_r, moves);
 	}
 	if (diff > 0)
 	{
-		repeater(stacks, 'r', bf, &op_r, moves);
-		repeater(stacks, 'a', af - bf, &op_r, moves);
+		repeater(stacks, make_md('r', bf), &op_r, moves);
+		repeater(stacks, make_md('a', af - bf), &op_r, moves);
 	}
 	// ft_printf("before put\n");
 	op_p(stacks, 'b');
@@ -86,13 +93,13 @@ void	strat_one(t_stack *stacks, int ar, int br, t_moves *moves)
 	diff = ar - br;
 	if (diff <= 0)
 	{
-		repeater(stacks, 'r', ar, &op_q, moves);
-		repeater(stacks, 'b', br - ar, &op_q, moves);
+		repeater(stacks, make_md('r', ar), &op_q, moves);
+		repeater(stacks, make_md('b', br - ar), &op_q, moves);
 	}
 	if (diff > 0)
 	{
-		repeater(stacks, 'r', br, &op_q, moves);
-		repeater(stacks, 'a', ar - br, &op_q, moves);
+		repeater(stacks, make_md('r', br), &op_q, moves);
+		repeater(stacks, make_md('a', ar - br), &op_q, moves);
 	}
 	op_p(stacks, 'b');
 	ft_printf("%@blue@s\n\n", "=============================================");
@@ -101,8 +108,8 @@ void	strat_one(t_stack *stacks, int ar, int br, t_moves *moves)
 void	strat_two(t_stack *stacks, int ar, int br, t_moves *moves)
 {
 	ft_printf("strat 2\n");
-	repeater(stacks, 'a', ar, &op_r, moves);
-	repeater(stacks, 'b', br, &op_q, moves);
+	repeater(stacks, make_md('a', ar), &op_r, moves);
+	repeater(stacks, make_md('b', br), &op_q, moves);
 	op_p(stacks, 'b');
 	ft_printf("%@blue@s\n\n", "=============================================");
 }
@@ -110,8 +117,8 @@ void	strat_two(t_stack *stacks, int ar, int br, t_moves *moves)
 void	strat_three(t_stack *stacks, int ar, int br, t_moves *moves)
 {
 	ft_printf("strat 3\n");
-	repeater(stacks, 'a', ar, &op_q, moves);
-	repeater(stacks, 'b', br, &op_r, moves);
+	repeater(stacks, make_md('a', ar), &op_q, moves);
+	repeater(stacks, make_md('b', br), &op_r, moves);
 	op_p(stacks, 'b');
 	ft_printf("%@blue@s\n\n", "=============================================");
 }

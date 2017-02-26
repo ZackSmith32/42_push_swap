@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 15:25:54 by zsmith            #+#    #+#             */
-/*   Updated: 2017/02/22 10:57:39 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/02/25 17:19:53 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,19 @@ void	ft_put_error(char *str)
 	{
 		write(2, str, 1);
 		str++;
-	}	
+	}
+}
+
+int		ft_put_error_bool(int bool, char *str)
+{
+	if (bool)
+		return (1);
+	while (*str != '\0')
+	{
+		write(2, str, 1);
+		str++;
+	}
+	return (0);
 }
 
 int		ft_greater_than(int a, int b)

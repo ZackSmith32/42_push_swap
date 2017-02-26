@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 10:19:08 by zsmith            #+#    #+#             */
-/*   Updated: 2017/02/24 00:17:43 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/02/25 21:16:36 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void	output(t_stack *stacks)
 	}
 }
 
-void	push_swap(int *a, int alen)
+void	push_swap(int *a, int alen, int flag)
 {
 	t_stack		*stacks;
 	t_moves		*moves;
@@ -113,7 +113,7 @@ void	push_swap(int *a, int alen)
 
 	// ft_printf("in: push_swap\n");
 	moves = (t_moves*)ft_memalloc(sizeof(t_moves));
-	stacks = make_stack_obj(a, alen);
+	stacks = make_stack_obj(a, alen, flag);
 	op_p(stacks, 'b');
 	op_p(stacks, 'b');
 	// ft_printf("after ops\n");
@@ -179,7 +179,6 @@ int		main(int argc, char **argv)
 	int		*a;
 	int		num_flags;
 	int		alen;
-	int 	test[] = { 1, 2, 4, 5, 6, 6};
 
 	if (argc <= 1)
 	{
@@ -187,13 +186,63 @@ int		main(int argc, char **argv)
 		return (0);
 	}
 	num_flags = check_flags(argc, argv);
+	if (argc - num_flags == 1)
+	{
+		ft_put_error("Error\n");
+		return (0);
+	}
 	a = (int *)ft_memalloc(sizeof(int) * 1);
 	alen = parse(argc, argv, &a, num_flags);
+	if (alen == 0)
+		return (0);
 	ft_putarr(a, alen);
-	ft_putarr(test, 6);
-	push_swap(a, alen);
+	ft_printf("%d\n", num_flags);
+	push_swap(a, alen, num_flags);
 	return (0);
 }
+
+
+
+
+
+/*
+
+check flags
+
+check if args are string
+
+check if args are numbe inputs
+
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
