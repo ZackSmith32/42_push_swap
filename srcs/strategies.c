@@ -6,24 +6,14 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 22:14:55 by zsmith            #+#    #+#             */
-/*   Updated: 2017/02/25 21:18:54 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/01 22:39:06 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-/*
- *	> moves
- *		> operation
- *		> next operation
- *		> number we're working on A
- *		> number we're working on B
- *		ft_printf("\033[2J\033[1;1H");
- *	
- */
-
-
-void	repeater(t_stack *stacks, t_move_dir data, void (*f)(t_stack*, char), t_moves *moves)
+void	repeater(t_stack *stacks, t_move_dir data, void (*f)(t_stack*, char),
+			t_moves *moves)
 {
 	int		i;
 	int		anum;
@@ -38,35 +28,23 @@ void	repeater(t_stack *stacks, t_move_dir data, void (*f)(t_stack*, char), t_mov
 	bnum = stacks->b[moves->bf];
 	if (a == 0)
 		return ;
-	printf("anum = %d, bnum = %d\n", anum, bnum);
-	printf("before while print_flag = %d\n", stacks->print_flag);
 	if (stacks->print_flag != 0)
 		fun_stacks(stacks, moves, anum, bnum);
 	while (i < a)
 	{
-		printf("in while\n");
 		f(stacks, z);
-	if (stacks->print_flag != 0)
-		fun_stacks(stacks, moves, anum, bnum);
+		if (stacks->print_flag != 0)
+			fun_stacks(stacks, moves, anum, bnum);
 		i++;
 	}
-
 }
-
-/*
-**	strat 0 = af bf
-**	strat 1 = ar br
-**	strat 2 = af br
-**	strat 3 = ar bf
-*/
 
 void	strat_zero(t_stack *stacks, int af, int bf, t_moves *moves)
 {
 	t_move_dir	data;
+	int			i;
+	int			diff;
 
-	ft_printf("strat 0\n");
-	int		i;
-	int		diff;
 	diff = af - bf;
 	if (diff <= 0)
 	{
@@ -78,15 +56,11 @@ void	strat_zero(t_stack *stacks, int af, int bf, t_moves *moves)
 		repeater(stacks, make_md('r', bf), &op_r, moves);
 		repeater(stacks, make_md('a', af - bf), &op_r, moves);
 	}
-	// ft_printf("before put\n");
 	op_p(stacks, 'b');
-	// ft_put_two_arr(stacks->a, stacks->alen, stacks->b, stacks->blen);	
-	ft_printf("%@blue@s\n\n", "=============================================");
 }
 
 void	strat_one(t_stack *stacks, int ar, int br, t_moves *moves)
 {
-	ft_printf("strat 1\n");
 	int		i;
 	int		diff;
 
@@ -102,64 +76,18 @@ void	strat_one(t_stack *stacks, int ar, int br, t_moves *moves)
 		repeater(stacks, make_md('a', ar - br), &op_q, moves);
 	}
 	op_p(stacks, 'b');
-	ft_printf("%@blue@s\n\n", "=============================================");
 }
 
 void	strat_two(t_stack *stacks, int ar, int br, t_moves *moves)
 {
-	ft_printf("strat 2\n");
 	repeater(stacks, make_md('a', ar), &op_r, moves);
 	repeater(stacks, make_md('b', br), &op_q, moves);
 	op_p(stacks, 'b');
-	ft_printf("%@blue@s\n\n", "=============================================");
 }
 
 void	strat_three(t_stack *stacks, int ar, int br, t_moves *moves)
 {
-	ft_printf("strat 3\n");
 	repeater(stacks, make_md('a', ar), &op_q, moves);
 	repeater(stacks, make_md('b', br), &op_r, moves);
 	op_p(stacks, 'b');
-	ft_printf("%@blue@s\n\n", "=============================================");
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

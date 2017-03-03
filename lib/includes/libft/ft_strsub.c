@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_keyhook.c                                       :+:      :+:    :+:   */
+/*   ft_strsub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/22 10:54:20 by zsmith            #+#    #+#             */
-/*   Updated: 2017/02/22 10:58:00 by zsmith           ###   ########.fr       */
+/*   Created: 2016/10/01 15:06:07 by zsmith            #+#    #+#             */
+/*   Updated: 2016/10/03 19:46:59 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "libft.h"
 
-int		ft_keyhook(char key)
+char	*ft_strsub(char const *s, unsigned int start, size_t len)
 {
-	int		bytes;
-	char	*buff;
+	char	*ret_str;
+	size_t	i;
 
-	buff = ft_memalloc(BUFF_SIZE);
-	while ((bytes = read(0, buff, 1)))
+	if (!s)
+		return (NULL);
+	ret_str = (char *)malloc(sizeof(char) * (len + 1));
+	if (ret_str == 0)
+		return (NULL);
+	i = 0;
+	while (i < len && s[i + start])
 	{
-		if (ft_strchr(buff, '\n'))
-			break ;
+		ret_str[i] = (char)s[i + start];
+		i++;
 	}
-	return (bytes);
+	ret_str[i] = '\0';
+	return (ret_str);
 }

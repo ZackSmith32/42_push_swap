@@ -6,13 +6,13 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 16:35:50 by zsmith            #+#    #+#             */
-/*   Updated: 2017/02/18 18:01:20 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/01 22:38:06 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int	find_min(int *stack, int len)
+int			find_min(int *stack, int len)
 {
 	int		i;
 	int		min_index;
@@ -28,8 +28,7 @@ int	find_min(int *stack, int len)
 	return (min_index);
 }
 
-//	returns max index
-int	find_max(int *stack, int len)
+int			find_max(int *stack, int len)
 {
 	int		i;
 	int		max_index;
@@ -52,9 +51,6 @@ static void	regular_calc(t_stack *stacks, t_moves *moves, int num)
 	i = 0;
 	if (num > (stacks->b)[0] && num < (stacks->b)[stacks->blen - 1])
 	{
-		// ft_printf("regular_calc >> num in between front and end\n");
-		// ft_printf("num = %d, stacks[0] = %d, stacks[%d] = %d\n", num, stacks->b[0], stacks->blen, (stacks->b)[stacks->blen]);
-		// ft_put_two_arr(stacks->a, stacks->alen, stacks->b, stacks->blen);
 		moves->bf = 0;
 		moves->br = 0;
 		return ;
@@ -71,8 +67,11 @@ static void	regular_calc(t_stack *stacks, t_moves *moves, int num)
 	}
 }
 
-// num is the number we are looking at in stack 'a'
-void	calc_b(t_stack *stacks, t_moves *moves, int num)
+/*
+** num is the number we are looking at in stack 'a'
+*/
+
+void		calc_b(t_stack *stacks, t_moves *moves, int num)
 {
 	int		i;
 	int		min_index;
@@ -83,25 +82,21 @@ void	calc_b(t_stack *stacks, t_moves *moves, int num)
 	i = 0;
 	if (num < (stacks->b)[min_index])
 	{
-		// ft_printf("%@red@s\n", "min");
 		moves->bf = min_index + 1;
 		moves->br = stacks->blen - min_index - 1;
 	}
 	else if (num > (stacks->b)[max_index])
 	{
-		// ft_printf("%@red@s\n", "max");
-		// ft_printf("max num = %d, max index = %d\n", num, max_index);
 		moves->bf = max_index;
 		moves->br = stacks->blen - max_index;
 	}
 	else
 	{
-		// ft_printf("%@red@s %@red@d\n", "regular num =", num);
 		regular_calc(stacks, moves, num);
 	}
 }
 
-void	calc_strategy(int af, int ar, int bf, t_moves *min)
+void		calc_strategy(int af, int ar, int bf, t_moves *min)
 {
 	int		br;
 
@@ -124,49 +119,3 @@ void	calc_strategy(int af, int ar, int bf, t_moves *min)
 		min->total = ar + bf;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

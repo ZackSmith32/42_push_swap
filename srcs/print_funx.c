@@ -6,32 +6,14 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/20 15:40:34 by zsmith            #+#    #+#             */
-/*   Updated: 2017/02/25 21:10:07 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/01 23:04:53 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-// void 	ft_put_two_arr(int *a, int alen, int *b, int blen)
-// {
-// 	int		i;
-
-// 	i = 0;
-// 	ft_printf("  A     B\n");
-// 	while (i < (ft_greater_than(alen, blen) ? alen : blen))
-// 	{
-// 		if (i < alen)
-// 			ft_printf("  %d     ", a[i]);
-// 		else 
-// 			ft_printf("        ");
-// 		if (i < blen)
-// 			ft_printf("%d", b[i]);
-// 		ft_printf("\n");
-// 		i++;
-// 	}
-// }
-
-void	repeater_post(t_stack *stacks, char z, int a, void (*f)(t_stack*, char))
+void		repeater_post(t_stack *stacks, char z, int a,
+	void (*f)(t_stack*, char))
 {
 	int		i;
 
@@ -43,13 +25,14 @@ void	repeater_post(t_stack *stacks, char z, int a, void (*f)(t_stack*, char))
 	}
 }
 
-void	fun_stacks(t_stack *stacks, t_moves *moves, int anum, int bnum)
+void		fun_stacks(t_stack *stacks, t_moves *moves, int anum, int bnum)
 {
 	int		i;
 	int		j;
 
 	j = 0;
-	i = ft_greater_than(stacks->alen, stacks->blen) ? stacks->alen : stacks->blen;
+	i = ft_greater_than(stacks->alen, stacks->blen) ?
+		stacks->alen : stacks->blen;
 	ft_printf("\033[2J\033[1;1H");
 	ft_printf("%@underline@5s %@underline@s%@underline@4s\n", "A", "B", "");
 	while (j < i)
@@ -71,7 +54,7 @@ void	fun_stacks(t_stack *stacks, t_moves *moves, int anum, int bnum)
 	ft_keyhook('\n');
 }
 
-t_move_dir make_md(char z, int a)
+t_move_dir	make_md(char z, int a)
 {
 	t_move_dir	data;
 

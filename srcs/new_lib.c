@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 15:25:54 by zsmith            #+#    #+#             */
-/*   Updated: 2017/02/25 17:19:53 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/01 22:32:38 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,12 @@ int		ft_put_error_bool(int bool, char *str)
 int		ft_greater_than(int a, int b)
 {
 	if (a >= b)
-		return 1;
+		return (1);
 	else
-		return 0;
+		return (0);
 }
 
-void 	ft_put_two_arr(int *a, int alen, int *b, int blen)
+void	ft_put_two_arr(int *a, int alen, int *b, int blen)
 {
 	int		i;
 
@@ -51,7 +51,7 @@ void 	ft_put_two_arr(int *a, int alen, int *b, int blen)
 	{
 		if (i < alen)
 			ft_printf("  %d     ", a[i]);
-		else 
+		else
 			ft_printf("        ");
 		if (i < blen)
 			ft_printf("%d", b[i]);
@@ -60,12 +60,10 @@ void 	ft_put_two_arr(int *a, int alen, int *b, int blen)
 	}
 }
 
-/*
- *	only frees the contents of the tab
- */
 void	ft_free_tab(char **tab)
 {
-	int 	i;
+	int		i;
+
 	i = 0;
 	while (*tab != 0)
 	{
@@ -75,4 +73,3 @@ void	ft_free_tab(char **tab)
 	}
 	free(*tab);
 }
-

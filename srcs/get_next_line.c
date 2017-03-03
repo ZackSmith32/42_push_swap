@@ -5,13 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/11 16:01:14 by zsmith            #+#    #+#             */
-/*   Updated: 2017/02/19 19:24:09 by zsmith           ###   ########.fr       */
+/*   Created: 2017/02/28 12:38:58 by zsmith            #+#    #+#             */
+/*   Updated: 2017/03/01 22:40:12 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-#include <stdio.h>
+#include "get_next_line.h"
 
 static int		check_struct(t_gnl *temp, char **line)
 {
@@ -19,9 +18,9 @@ static int		check_struct(t_gnl *temp, char **line)
 	int		str_len;
 	char	*str;
 
-	i = 0;
-	if (!(temp->content))
+	if (ft_strlen(temp->content) == 0)
 		return (0);
+	i = 0;
 	while (temp->content[i] != '\n' && temp->content[i] != '\0')
 		i++;
 	free(*line);
@@ -29,8 +28,8 @@ static int		check_struct(t_gnl *temp, char **line)
 	ft_memcpy(*line, temp->content, (size_t)i);
 	if (temp->content[i] == 0)
 	{
+		ft_bzero(temp->content, i);
 		free(temp->content);
-		temp->content = NULL;
 		return (0);
 	}
 	str_len = ft_strlen(temp->content) - i;
@@ -69,17 +68,21 @@ static int		reading(int fd, char **line, char *buff)
 static int		read_buf(int fd, t_gnl *item, char **line)
 {
 	char	*buff;
+	char	*hld;
 	int		i;
 	int		j;
 
 	j = 0;
 	buff = (char *)ft_memalloc(BUFF_SIZE + 1);
 	i = reading(fd, line, buff);
-	while (buff[j] != '\0' && buff[j] != '\n')
-		j++;
-	free(item->content);
-	item->content = ft_strdup(buff + (j + 1));
+	hld = ft_strchr(buff, '\n');
+	if (hld)
+	{
+		item->content = ft_strdup(hld + 1);
+	}
 	free(buff);
+	if (i == -1)
+		return (-1);
 	if (i != BUFF_SIZE)
 		return (0);
 	return (1);
@@ -89,34 +92,18 @@ static int		central(t_gnl *temp, char **line, t_gnl **head)
 {
 	t_gnl	*h;
 	t_gnl	*g;
+	int		ret;
 
 	if (check_struct(temp, line))
 		return (1);
-	if (read_buf(temp->fd, temp, line))
-		return (1);
+	ret = read_buf(temp->fd, temp, line);
+	if (ret)
+		return (ret);
 	if (ft_strlen(*line) != 0)
 		return (1);
-	h = (*head);
-	// printf("line = %s\n", *line);
-	while (h->next != 0)
-	{
-		g = h->next;
-		if (g->fd == temp->fd)
-		{
-			h->next = g->next;
-			free(g->content);
-			free(g);
-			return (0);
-		}
-	}
-	free((*head)->content);
-	free(*head);
+	free_gnl(head, temp->fd);
 	return (0);
 }
-
-/*
-**	1 unfreed malloc.. think it's in the linked list
-*/
 
 int				get_next_line(const int fd, char **line)
 {

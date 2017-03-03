@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 12:47:07 by zsmith            #+#    #+#             */
-/*   Updated: 2017/02/09 21:08:54 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/01 22:18:59 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,24 @@ void	print_moves(t_moves *moves)
 	ft_printf("ar = %d\n", moves->ar);
 	ft_printf("bf = %d\n", moves->bf);
 	ft_printf("br = %d\n", moves->br);
+}
+
+int		check_dupes(int *a, int alen)
+{
+	int		i;
+	int		j;
+
+	i = 0;
+	while (i < alen)
+	{
+		j = i + 1;
+		while (j < alen)
+		{
+			if (a[i] == a[j])
+				return (0);
+			j++;
+		}
+		i++;
+	}
+	return (1);
 }

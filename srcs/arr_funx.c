@@ -6,33 +6,14 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 12:43:59 by zsmith            #+#    #+#             */
-/*   Updated: 2017/02/09 12:51:27 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/01 23:07:06 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	ft_put_arr(int *a, int len)
-{
-	int		i;
-
-	i = 0;
-	while (i < len)
-	{
-		ft_printf("%d\n", a[i]);
-		i++;
-	}
-}
-
-/*
-**	This is a realloc for an int pointer
-**	Update: take in an in pointer, make possible to add multiple ints
-*/
 int		ft_push_arr(int **a, int num, int len)
 {
-	// ft_printf("push: in: num = %d; len = %d\n", num, len);
-	// ft_put_arr(*a, len);
-
 	int		*new;
 	int		i;
 
@@ -46,16 +27,7 @@ int		ft_push_arr(int **a, int num, int len)
 		i++;
 	}
 	free(*a);
-	/*
-	**	need to figure out what the difference is between the following line
-	**	an a = &new
-	**	answer: a is the address of *a, the address of *a is used outside this funchtion
-	**	when you do a = &new you are pointin a somewhere else, but what you want is 
-	**	to change the memory that a is already pointing at.  hence the notation bellow.
-	*/
 	*a = new;
-	// ft_printf("push: out: i = %d\n", i);
-	// ft_put_arr(*a, i);
 	return (i);
 }
 
@@ -80,13 +52,11 @@ int		ft_append_arr(int **a, int num, int len)
 
 int		ft_pop_arr(int **a, int len)
 {
-	// ft_printf("pop_arr: in: len = %d\n", len);
-	// ft_put_arr(*a, len);
 	int		*new;
 	int		ret;
 	int		i;
 
-	ret = (*a)[0]; 
+	ret = (*a)[0];
 	new = (int *)ft_memalloc(sizeof(int) * len - 1);
 	i = 1;
 	while (i < len)
@@ -97,7 +67,20 @@ int		ft_pop_arr(int **a, int len)
 	new[i - 1] = 0;
 	free(*a);
 	*a = new;
-	// ft_printf("pop_arr: out: ret = %d\n", ret);
-	// ft_put_arr(*a, len);
 	return (ret);
+}
+
+t_stack	*make_stack_obj(int *a, int alen, int num_flags)
+{
+	t_stack		*stacks;
+	char		*temp;
+
+	stacks = (t_stack *)ft_memalloc(sizeof(t_stack));
+	stacks->a = a;
+	stacks->alen = alen;
+	stacks->b = (int *)ft_memalloc(sizeof(int));
+	stacks->blen = 0;
+	stacks->operations = (char **)ft_memalloc(sizeof(char*));
+	stacks->print_flag = num_flags;
+	return (stacks);
 }
