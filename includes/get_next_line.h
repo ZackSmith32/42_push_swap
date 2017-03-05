@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ck_srt_ascend.c                                    :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/27 10:54:18 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/03 15:27:14 by zsmith           ###   ########.fr       */
+/*   Created: 2016/10/17 23:20:16 by zsmith            #+#    #+#             */
+/*   Updated: 2017/02/28 17:48:54 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-int		ck_srt_ascend(int *a, int alen)
+# include <unistd.h>
+# include "libft.h"
+
+# define BUFF_SIZE 32
+
+typedef struct		s_gnl
 {
-	int		i;
+	int				fd;
+	char			*content;
+	size_t			content_size;
+	struct s_gnl	*next;
+}					t_gnl;
 
-	i = 0;
-	if (!a)
-		return (0);
-	while (i < (alen - 1))
-	{
-		if (a[i] > a[i + 1])
-			return (0);
-		i++;
-	}
-	return (1);
-}
+int					get_next_line(const int fd, char **line);
+void				free_gnl(t_gnl **head, int fd);
+
+#endif

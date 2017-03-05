@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/25 20:37:24 by zsmith            #+#    #+#             */
-/*   Updated: 2017/02/27 15:12:15 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/03 11:06:54 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ long long	ft_atol(const char *str)
 	long long	ans;
 	int			neg;
 	int			i;
-
+	
 	i = 0;
 	neg = 1;
 	ans = 0;

@@ -6,7 +6,7 @@
 #    By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/09/22 16:32:25 by zsmith            #+#    #+#              #
-#    Updated: 2017/03/02 21:26:18 by zsmith           ###   ########.fr        #
+#    Updated: 2017/03/03 11:31:39 by zsmith           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,5 +51,6 @@ clean:
 
 fclean: clean
 	@ /bin/rm -f $(NAME)
+	make fclean -C ./includes/libft
 
 re: fclean all

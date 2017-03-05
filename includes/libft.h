@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mba <mba@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/22 12:02:11 by zsmith            #+#    #+#             */
-/*   Updated: 2016/12/19 15:54:48 by mba              ###   ########.fr       */
+/*   Updated: 2017/03/01 23:10:34 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,6 @@ typedef struct		s_color
 	char			*c;
 	char			*code;
 }					t_color;
-
-typedef struct		s_g_list
-{
-	int				fd;
-	void			*content;
-	size_t			content_size;
-	struct s_g_list	*next;
-}					t_a_list;
-
-# define BUFF_SIZE 32
 
 /*
 ** Part 1
@@ -132,7 +122,8 @@ void				ft_putbits(int n, int bytes);
 int					ft_numlen_base(unsigned long long n, int base);
 char				*ft_itoa_base(unsigned long long n, int base);
 void				ft_color_on(int argc, ...);
-int					get_next_line(const int fd, char **line);
-int					ft_free_struct(t_a_list **obj);
+long long			ft_atol(const char *s);
+void				ft_putarr(int *a, int len);
+int					ft_keyhook(char key);
 
 #endif

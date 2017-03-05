@@ -6,7 +6,8 @@ int		main(int argc, char **argv)
 	int		i;
 
 	i = 1;
-	ft_putstr("rra\npb\nsa\nrra\npa\n");
+
+	ft_putstr("ra\nra\nra\nra\nra\n");
 /*
 	while (i < argc)
 	{
@@ -19,4 +20,12 @@ int		main(int argc, char **argv)
 
 /* 
 ** gcc test/test.c -I includes/libft.h -L. lib/libftprintf.a -o main
+*/
+
+/*
+sa
+pb
+rb
+ra
+rrr
 */

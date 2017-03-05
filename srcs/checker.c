@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 17:05:04 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/03 10:51:43 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/03 16:42:30 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,16 +72,18 @@ int		main(int argc, char **argv)
 	j = 0;
 	if (argc <= 1)
 	{
-		ft_put_error("Error: number of arguments\n");
 		return (0);
 	}
 	a = (int *)ft_memalloc(sizeof(int) * 1);
 	num_flags = check_flags_checker(argc, argv);
+	ft_printf("before checker parse\n");
 	argc = parse(argc, argv, &a, num_flags);
+	ft_printf("after checker parse\n");
 	if (argc == 0)
 		return (0);
 	tab = (char **)ft_memalloc(sizeof(char *) * 1);
 	operations = read_args(&tab);
+	// ft_puttab(tab);
 	checker(a, argc, tab, num_flags);
 	if (num_flags)
 		ft_printf("operations: %@green@d\n", operations);
