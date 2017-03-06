@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 10:19:08 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/03 15:46:04 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/06 12:42:50 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,25 +64,27 @@ void	eval_moves(t_stack *stacks, t_moves *moves)
 	free(min);
 }
 
+
 void	output(t_stack *stacks)
 {
 	int		i;
-	int		j;
+	char 	*op;
+	char	*str;
+	char	*temp;
 
 	i = 0;
+	str = ft_memalloc(1);
 	while (stacks->operations[i] != 0)
 	{
-		j = 0;
-		while (stacks->operations[i][j] != 0)
-		{
-			write(1, &stacks->operations[i][j], 1);
-			j++;
-		}
-		write(1, "\n", 1);
+		op = ft_strjoin(stacks->operations[i], "\n");
+		temp = str;
+		str = ft_strjoin(str, op);
+		free(temp);
 		i++;
 	}
+	write(1, str, ft_strlen(str));
+	free(str);
 }
-
 void	push_swap(int *a, int alen, int flag)
 {
 	t_stack		*stacks;
