@@ -6,7 +6,7 @@
 #    By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/14 23:11:31 by zsmith            #+#    #+#              #
-#    Updated: 2017/03/03 12:01:28 by zsmith           ###   ########.fr        #
+#    Updated: 2017/03/15 18:08:53 by zsmith           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,10 +64,12 @@ HDIR	=	includes/
 all: $(NAME)
 
 $(NAME): push_swap
-	gcc $(addprefix $(SRCDIR), $(CFILES)) -o $@ -I $(HDIR) -L. lib/libftprintf.a
+	gcc $(addprefix $(SRCDIR), $(CFILES)) -o $@ -I $(HDIR) \
+		-L. lib/libftprintf.a
 
 push_swap: libs
-	gcc $(addprefix $(SRCDIR), $(PSFILES)) -o $@ -I $(HDIR) -L. lib/libftprintf.a
+	gcc $(addprefix $(SRCDIR), $(PSFILES)) -o $@ -I $(HDIR) \
+		-L. lib/libftprintf.a
 	
 libs:
 	make -C ./lib

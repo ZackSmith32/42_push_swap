@@ -6,12 +6,11 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/28 12:38:58 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/06 10:04:01 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/08 09:27:41 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdio.h>
 
 static int		check_struct(t_gnl *temp, char **line)
 {
@@ -63,7 +62,6 @@ static int		reading(int fd, char **line, char *buff)
 		if (j != BUFF_SIZE)
 			break ;
 	}
-	// printf("fd = %d, i = %d, buff = %s\n", fd, i, buff);
 	return (i);
 }
 
