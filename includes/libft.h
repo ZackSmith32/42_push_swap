@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/22 12:02:11 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/01 23:10:34 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/15 18:56:48 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <unistd.h>
 # include <string.h>
 # include <stdarg.h>
+
+# define BUFF_SIZE 32
 
 typedef struct		s_list
 {
@@ -30,6 +32,14 @@ typedef struct		s_color
 	char			*c;
 	char			*code;
 }					t_color;
+
+typedef struct		s_gnl
+{
+	int				fd;
+	char			*content;
+	size_t			content_size;
+	struct s_gnl	*next;
+}					t_gnl;
 
 /*
 ** Part 1
@@ -106,6 +116,12 @@ void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(f)(t_list *elem));
 
 /*
+** Get Next Line
+*/
+int					get_next_line(const int fd, char **line);
+void				free_gnl(t_gnl **head, int fd);
+
+/*
 ** My Funcs
 */
 char				*ft_strtrim_c(char const *s, char c);
@@ -125,5 +141,7 @@ void				ft_color_on(int argc, ...);
 long long			ft_atol(const char *s);
 void				ft_putarr(int *a, int len);
 int					ft_keyhook(char key);
+void				ft_puterror(char *str);
+int					ft_isnum(char *str);
 
 #endif

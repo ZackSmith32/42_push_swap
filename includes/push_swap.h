@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 10:20:45 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/03 15:45:01 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/17 00:50:41 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include <limits.h>
 # include <stdlib.h>
 # include "ft_printf.h"
-# include "get_next_line.h"
 
 typedef struct		s_swap
 {
@@ -48,6 +47,12 @@ typedef struct		s_m_d
 }					t_move_dir;
 
 /*
+**
+*/
+int					parse_input_type(int argc, char **argv, char ***parsed_data);
+int					populate_stack(char **parsed_data, int **a);
+
+/*
 **			ft_contains.c
 */
 int					ft_contains(char **tab, char *item);
@@ -60,8 +65,8 @@ int					ck_srt_ascend(int *a, int alen);
 /*
 **			print_funx
 */
-void				fun_stacks(t_stack *stacks, t_moves *moves,
-						int anum, int bnum);
+void				fun_stacks(t_stack *stacks, int anum, int bnum);
+
 void				repeater_post(t_stack *stacks, char z, int a,
 						void (*f)(t_stack*, char));
 t_move_dir			make_md(char z, int a);
@@ -111,6 +116,7 @@ t_stack				*make_stack_obj(int *a, int alen, int num_flags);
 */
 int					ft_push_str(char ***tab, char *ptr);
 char				*ft_pop_str(char **tab);
+int					ft_tablen(char **tab);
 
 /*
 **			helpers
@@ -135,7 +141,7 @@ void				ft_put_two_arr(int *a, int alen, int *b, int blen);
 */
 void				is_ordered(t_stack *stacks);
 int					read_args(char ***tab);
-int					check_flags_checker(int argc, char **argv);
+int					check_flags_checker(char **argv);
 
 /*
 **			op_s

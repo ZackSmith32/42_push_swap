@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/15 12:09:12 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/01 22:33:01 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/15 19:16:10 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	ft_bubsort_a(int **stack, int len)
 {
 	t_stack	*new;
 	int		i;
-	int		j;
 
 	i = 0;
 	new = (t_stack *)ft_memalloc(sizeof(int) * len);
@@ -32,7 +31,6 @@ void	ft_bubsort_a(int **stack, int len)
 void	push_back(t_stack *stacks)
 {
 	int		*b;
-	int		rot;
 
 	b = stacks->b;
 	if (find_max(b, stacks->blen) - (stacks->blen - find_max(b, stacks->blen))

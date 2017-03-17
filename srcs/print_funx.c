@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/20 15:40:34 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/01 23:04:53 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/15 19:19:00 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void		repeater_post(t_stack *stacks, char z, int a,
 	}
 }
 
-void		fun_stacks(t_stack *stacks, t_moves *moves, int anum, int bnum)
+void		fun_stacks(t_stack *stacks, int anum, int bnum)
 {
 	int		i;
 	int		j;

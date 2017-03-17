@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 11:33:34 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/02 13:38:21 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/15 19:14:40 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ void	op_p(t_stack *stacks, char c)
 void	op_r(t_stack *stacks, char c)
 {
 	int		top;
-	char	*str;
 
 	if ((c == 'a' || c == 'r') && stacks->alen > 1)
 	{

@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 12:43:59 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/01 23:07:06 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/16 23:13:43 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ int		ft_pop_arr(int **a, int len)
 t_stack	*make_stack_obj(int *a, int alen, int num_flags)
 {
 	t_stack		*stacks;
-	char		*temp;
 
 	stacks = (t_stack *)ft_memalloc(sizeof(t_stack));
 	stacks->a = a;

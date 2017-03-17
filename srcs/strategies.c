@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 22:14:55 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/01 22:39:06 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/15 19:21:17 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,20 +29,18 @@ void	repeater(t_stack *stacks, t_move_dir data, void (*f)(t_stack*, char),
 	if (a == 0)
 		return ;
 	if (stacks->print_flag != 0)
-		fun_stacks(stacks, moves, anum, bnum);
+		fun_stacks(stacks, anum, bnum);
 	while (i < a)
 	{
 		f(stacks, z);
 		if (stacks->print_flag != 0)
-			fun_stacks(stacks, moves, anum, bnum);
+			fun_stacks(stacks, anum, bnum);
 		i++;
 	}
 }
 
 void	strat_zero(t_stack *stacks, int af, int bf, t_moves *moves)
 {
-	t_move_dir	data;
-	int			i;
 	int			diff;
 
 	diff = af - bf;
@@ -61,7 +59,6 @@ void	strat_zero(t_stack *stacks, int af, int bf, t_moves *moves)
 
 void	strat_one(t_stack *stacks, int ar, int br, t_moves *moves)
 {
-	int		i;
 	int		diff;
 
 	diff = ar - br;

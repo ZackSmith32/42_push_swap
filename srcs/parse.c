@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 11:43:31 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/01 23:09:35 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/15 19:15:14 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int		check_flags(int argc, char **argv)
 {
 	int		num_flags;
 
+	argc++;
 	num_flags = 0;
 	if (ft_strcmp(argv[1], "-v") == 0)
 		num_flags++;

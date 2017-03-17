@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/01 23:01:17 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/06 11:19:41 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/15 19:26:26 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,22 +62,18 @@ int		read_args(char ***tab)
 	{
 		if (!check_line(line))
 		{
-			ft_printf("%@red@s %s\n", "GNL Error", line);
-			// exit(1);
+			ft_puterror("Error\n");
+			exit(1);
 		}
-		// ft_printf("%s\n", line);
 		ft_push_str(tab, line);
-		// ft_bzero(line, ft_strlen(line));
 		free(line);
 		j++;
 	}
-	// printf("op count = %d\n", j);
-	// ft_printf("%d\n", j);
 	free(line);
 	return (j);
 }
 
-int		check_flags_checker(int argc, char **argv)
+int		check_flags_checker(char **argv)
 {
 	int		num_flags;
 

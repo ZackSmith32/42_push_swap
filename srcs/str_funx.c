@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 12:44:56 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/02 13:24:45 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/16 23:13:09 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,16 @@ char	*ft_pop_str(char **tab)
 	}
 	free(tab[j]);
 	return (ret);
+}
+
+int		ft_tablen(char **tab)
+{
+	int		i;
+
+	i = 0;
+	while (tab[i] != 0)
+	{
+		i++;
+	}
+	return (i);
 }

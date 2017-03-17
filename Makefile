@@ -6,12 +6,12 @@
 #    By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/14 23:11:31 by zsmith            #+#    #+#              #
-#    Updated: 2017/03/15 18:08:53 by zsmith           ###   ########.fr        #
+#    Updated: 2017/03/16 23:27:55 by zsmith           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	checker
-FLAGS	=	-c -Wall -Wextra -Werror
+FLAGS	=	#-Wall -Wextra -Werror
 CFILES	=	checker.c			\
 			new_lib.c			\
 			op_spr.c			\
@@ -19,9 +19,8 @@ CFILES	=	checker.c			\
 			arr_funx.c			\
 			str_funx.c			\
 			helpers.c			\
-			get_next_line.c		\
-			free_gnl.c			\
 			checker_support.c	\
+			parse_two.c			\
 
 			# test_mallocwrap.c	\
 
@@ -37,6 +36,7 @@ PSFILES =	push_swap.c			\
 			post_sort_funx.c	\
 			ck_srt_ascend.c		\
 			print_funx.c		\
+			parse_two.c			\
 
 OFILES =	push_swap.o			\
 			new_lib.o			\
@@ -55,6 +55,7 @@ OFILES =	push_swap.o			\
 			get_next_line.o		\
 			free_gnl.o			\
 			checker_support.o	\
+			parse_two.o			\
 
 SRCDIR  =	srcs/
 HDIR	=	includes/
@@ -64,11 +65,11 @@ HDIR	=	includes/
 all: $(NAME)
 
 $(NAME): push_swap
-	gcc $(addprefix $(SRCDIR), $(CFILES)) -o $@ -I $(HDIR) \
+	gcc $(FLAGS) $(addprefix $(SRCDIR), $(CFILES)) -o $@ -I $(HDIR) \
 		-L. lib/libftprintf.a
 
 push_swap: libs
-	gcc $(addprefix $(SRCDIR), $(PSFILES)) -o $@ -I $(HDIR) \
+	gcc $(FLAGS) $(addprefix $(SRCDIR), $(PSFILES)) -o $@ -I $(HDIR) \
 		-L. lib/libftprintf.a
 	
 libs:

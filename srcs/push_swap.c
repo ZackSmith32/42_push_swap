@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 10:19:08 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/06 12:42:50 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/17 00:51:11 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,10 @@ void	eval_moves(t_stack *stacks, t_moves *moves)
 	free(min);
 }
 
-
 void	output(t_stack *stacks)
 {
 	int		i;
-	char 	*op;
+	char	*op;
 	char	*str;
 	char	*temp;
 
@@ -85,6 +84,7 @@ void	output(t_stack *stacks)
 	write(1, str, ft_strlen(str));
 	free(str);
 }
+
 void	push_swap(int *a, int alen, int flag)
 {
 	t_stack		*stacks;
@@ -115,24 +115,27 @@ void	push_swap(int *a, int alen, int flag)
 int		main(int argc, char **argv)
 {
 	int		*a;
+	char	***parsed_data;
 	int		num_flags;
 	int		alen;
 
+	parsed_data = (char ***)ft_memalloc(sizeof(char **));
 	if (argc <= 1)
 	{
 		ft_put_error("Error\n");
 		return (0);
 	}
 	num_flags = check_flags(argc, argv);
-	if (argc - num_flags == 1)
+	a = (int *)ft_memalloc(sizeof(int) * 1);
+	if (!parse_input_type(argc, argv, parsed_data))
 	{
-		ft_put_error("Error\n");
+		free(parsed_data);
+		printf("parse2 ERROR\n");
 		return (0);
 	}
-	a = (int *)ft_memalloc(sizeof(int) * 1);
-	alen = parse(argc, argv, &a, num_flags);
-	if (alen == 0)
-		return (0);
-	push_swap(a, alen, num_flags);
+	ft_puttab(*parsed_data);
+	alen = populate_stack(*parsed_data, &a);
+	// alen = parse(argc, argv, &a, num_flags);
+	// push_swap(a, alen, num_flags);
 	return (0);
 }

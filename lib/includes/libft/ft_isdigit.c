@@ -6,14 +6,15 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/25 21:25:56 by zsmith            #+#    #+#             */
-/*   Updated: 2016/09/25 21:29:49 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/17 00:59:20 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
+#include <stdio.h>
 int		ft_isdigit(int c)
 {
+	printf("%c\n", c);
 	if (c >= 48 && c <= 57)
 		return (1);
 	else

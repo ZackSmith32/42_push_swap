@@ -6,10 +6,9 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 17:05:04 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/06 10:52:21 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/15 19:26:57 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../includes/push_swap.h"
 
@@ -76,15 +75,14 @@ int		main(int argc, char **argv)
 		return (0);
 	}
 	a = (int *)ft_memalloc(sizeof(int) * 1);
-	num_flags = check_flags_checker(argc, argv);
+	num_flags = check_flags_checker(argv);
 	argc = parse(argc, argv, &a, num_flags);
 	if (argc == 0)
 		return (0);
 	tab = (char **)ft_memalloc(sizeof(char *) * 1);
 	operations = read_args(&tab);
-	// ft_puttab(tab);
 	checker(a, argc, tab, num_flags);
 	if (num_flags)
-		ft_printf("operations: %@green@d\n", operations);
+		ft_printf("%@white@s %d\n", "operations:", operations);
 	return (0);
 }

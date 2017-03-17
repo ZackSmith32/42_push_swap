@@ -6,7 +6,7 @@
 #    By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/09/22 16:32:25 by zsmith            #+#    #+#              #
-#    Updated: 2017/02/28 19:25:21 by zsmith           ###   ########.fr        #
+#    Updated: 2017/03/09 14:30:18 by zsmith           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -87,7 +87,10 @@ CFILES	=	ft_memset.c 	\
 			ft_atol.c		\
 			ft_putarr.c		\
 			ft_keyhook.c	\
-
+			get_next_line.c	\
+			free_gnl.c		\
+			ft_puterror.c	\
+			ft_isnum.c		\
 			
 HFILES	=	libft.h
 OFILES	=	$(CFILES:.c=.o)
