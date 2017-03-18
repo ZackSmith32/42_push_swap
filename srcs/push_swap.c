@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 10:19:08 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/17 00:51:11 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/17 01:07:53 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,6 @@ int		main(int argc, char **argv)
 	}
 	ft_puttab(*parsed_data);
 	alen = populate_stack(*parsed_data, &a);
-	// alen = parse(argc, argv, &a, num_flags);
 	// push_swap(a, alen, num_flags);
 	return (0);
 }

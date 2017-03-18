@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/16 22:26:43 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/17 00:56:03 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/17 01:08:06 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,10 +110,12 @@ int		populate_stack(char **parsed_data, int **a)
 
 
 
+/*
+> so still need to set up the global variables
+> need to check that the array is getting populated correctly
+> 
 
-
-
-
+*/
 
 
 
