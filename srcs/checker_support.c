@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/01 23:01:17 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/15 19:26:26 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/18 17:32:31 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,14 +71,4 @@ int		read_args(char ***tab)
 	}
 	free(line);
 	return (j);
-}
-
-int		check_flags_checker(char **argv)
-{
-	int		num_flags;
-
-	num_flags = 0;
-	if (ft_strcmp(argv[1], "-n") == 0)
-		num_flags++;
-	return (num_flags);
 }

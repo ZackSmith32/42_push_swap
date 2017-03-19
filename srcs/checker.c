@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 17:05:04 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/15 19:26:57 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/18 17:39:59 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,27 @@ void	dispatcher(t_stack *stacks, char *op)
 	free(op);
 }
 
-void	checker(int *a, int alen, char **tab, int num_flags)
+char	**read_operations(int *a, int alen)
+{
+	int		num_ops;
+	char	**tab;
+
+	tab = (char **)ft_memalloc(sizeof(char *));
+	num_ops = read_args(&tab);
+
+	return (tab);
+}
+
+void	checker(int *a, int alen)
 {
 	int			i;
 	t_stack		*stacks;
+	char		**tab;
+	int			tab_len;
 
-	stacks = make_stack_obj(a, alen, num_flags);
+	tab = read_operations(a, alen);
+	tab_len = ft_tablen(tab);
+	stacks = make_stack_obj(a, alen);
 	i = 0;
 	while (tab[0] != 0)
 	{
@@ -52,6 +67,8 @@ void	checker(int *a, int alen, char **tab, int num_flags)
 		i++;
 	}
 	is_ordered(stacks);
+	if (g_count_flag)
+		ft_printf("operations count = %d\n", tab_len);
 	free(stacks->a);
 	free(stacks->b);
 	ft_free_tab(stacks->operations);
@@ -64,25 +81,37 @@ void	checker(int *a, int alen, char **tab, int num_flags)
 int		main(int argc, char **argv)
 {
 	int		*a;
-	char	**tab;
-	int		j;
-	int		num_flags;
-	int		operations;
+	char	**parsed_data;
+	int		alen;
 
-	j = 0;
 	if (argc <= 1)
 	{
+		ft_put_error("Error\n");
 		return (0);
 	}
-	a = (int *)ft_memalloc(sizeof(int) * 1);
-	num_flags = check_flags_checker(argv);
-	argc = parse(argc, argv, &a, num_flags);
-	if (argc == 0)
+	if (!parse_input_type(argc, argv, &parsed_data))
 		return (0);
-	tab = (char **)ft_memalloc(sizeof(char *) * 1);
-	operations = read_args(&tab);
-	checker(a, argc, tab, num_flags);
-	if (num_flags)
-		ft_printf("%@white@s %d\n", "operations:", operations);
+	alen = populate_stack(&parsed_data, &a);
+	checker(a, alen);
 	return (0);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

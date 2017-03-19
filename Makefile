@@ -6,7 +6,7 @@
 #    By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/14 23:11:31 by zsmith            #+#    #+#              #
-#    Updated: 2017/03/16 23:27:55 by zsmith           ###   ########.fr        #
+#    Updated: 2017/03/18 17:33:47 by zsmith           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,19 +15,18 @@ FLAGS	=	#-Wall -Wextra -Werror
 CFILES	=	checker.c			\
 			new_lib.c			\
 			op_spr.c			\
-			parse.c				\
 			arr_funx.c			\
 			str_funx.c			\
 			helpers.c			\
 			checker_support.c	\
 			parse_two.c			\
+			globals.c			\
 
 			# test_mallocwrap.c	\
 
 PSFILES =	push_swap.c			\
 			new_lib.c			\
 			op_spr.c			\
-			parse.c				\
 			arr_funx.c			\
 			str_funx.c			\
 			helpers.c			\
@@ -37,11 +36,11 @@ PSFILES =	push_swap.c			\
 			ck_srt_ascend.c		\
 			print_funx.c		\
 			parse_two.c			\
+			globals.c			\
 
 OFILES =	push_swap.o			\
 			new_lib.o			\
 			op_spr.o			\
-			parse.o				\
 			arr_funx.o			\
 			str_funx.o			\
 			helpers.o			\
@@ -56,6 +55,7 @@ OFILES =	push_swap.o			\
 			free_gnl.o			\
 			checker_support.o	\
 			parse_two.o			\
+			globals.o			\
 
 SRCDIR  =	srcs/
 HDIR	=	includes/

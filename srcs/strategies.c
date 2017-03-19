@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 22:14:55 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/15 19:21:17 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/18 17:29:33 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ void	repeater(t_stack *stacks, t_move_dir data, void (*f)(t_stack*, char),
 	bnum = stacks->b[moves->bf];
 	if (a == 0)
 		return ;
-	if (stacks->print_flag != 0)
+	if (g_verbose_flag != 0)
 		fun_stacks(stacks, anum, bnum);
 	while (i < a)
 	{
 		f(stacks, z);
-		if (stacks->print_flag != 0)
+		if (g_verbose_flag != 0)
 			fun_stacks(stacks, anum, bnum);
 		i++;
 	}

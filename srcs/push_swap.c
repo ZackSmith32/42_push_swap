@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 10:19:08 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/17 01:07:53 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/18 17:42:19 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,13 +85,13 @@ void	output(t_stack *stacks)
 	free(str);
 }
 
-void	push_swap(int *a, int alen, int flag)
+void	push_swap(int *a, int alen)
 {
 	t_stack		*stacks;
 	t_moves		*moves;
 
 	moves = (t_moves*)ft_memalloc(sizeof(t_moves));
-	stacks = make_stack_obj(a, alen, flag);
+	stacks = make_stack_obj(a, alen);
 	if (alen > 3 && !ck_srt_ascend(stacks->a, stacks->alen))
 	{
 		op_p(stacks, 'b');
@@ -115,26 +115,34 @@ void	push_swap(int *a, int alen, int flag)
 int		main(int argc, char **argv)
 {
 	int		*a;
-	char	***parsed_data;
-	int		num_flags;
+	char	**parsed_data;
 	int		alen;
 
-	parsed_data = (char ***)ft_memalloc(sizeof(char **));
 	if (argc <= 1)
 	{
 		ft_put_error("Error\n");
 		return (0);
 	}
-	num_flags = check_flags(argc, argv);
-	a = (int *)ft_memalloc(sizeof(int) * 1);
-	if (!parse_input_type(argc, argv, parsed_data))
+	if (!parse_input_type(argc, argv, &parsed_data))
 	{
-		free(parsed_data);
-		printf("parse2 ERROR\n");
+		printf("Error\n");
 		return (0);
 	}
-	ft_puttab(*parsed_data);
-	alen = populate_stack(*parsed_data, &a);
-	// push_swap(a, alen, num_flags);
+	alen = populate_stack(&parsed_data, &a);
+	push_swap(a, alen);
 	return (0);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

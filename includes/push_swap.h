@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 10:20:45 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/17 00:50:41 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/18 17:33:18 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ typedef struct		s_swap
 	int				*b;
 	int				blen;
 	char			**operations;
-	int				print_flag;
 }					t_stack;
 
 typedef struct		s_list_moves
@@ -46,11 +45,14 @@ typedef struct		s_m_d
 	char			z;
 }					t_move_dir;
 
+extern int	g_verbose_flag;
+extern int	g_count_flag;
+
 /*
-**
+**			parse_two.c
 */
 int					parse_input_type(int argc, char **argv, char ***parsed_data);
-int					populate_stack(char **parsed_data, int **a);
+int					populate_stack(char ***parsed_data, int **a);
 
 /*
 **			ft_contains.c
@@ -97,19 +99,12 @@ int					find_max(int *stack, int len);
 int					find_min(int *stack, int len);
 
 /*
-**			parse
-*/
-int					data_validate(int argc, char **argv, int **a);
-int					check_flags(int argc, char **argv);
-int					parse(int argc, char **argv, int **a, int num_flags);
-
-/*
 **			arr_funx
 */
 int					ft_push_arr(int **a, int num, int len);
 int					ft_append_arr(int **a, int num, int len);
 int					ft_pop_arr(int **a, int len);
-t_stack				*make_stack_obj(int *a, int alen, int num_flags);
+t_stack				*make_stack_obj(int *a, int alen);
 
 /*
 **			str_funx

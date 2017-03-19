@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 12:43:59 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/16 23:13:43 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/18 17:28:01 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int		ft_pop_arr(int **a, int len)
 	return (ret);
 }
 
-t_stack	*make_stack_obj(int *a, int alen, int num_flags)
+t_stack	*make_stack_obj(int *a, int alen)
 {
 	t_stack		*stacks;
 
@@ -80,6 +80,5 @@ t_stack	*make_stack_obj(int *a, int alen, int num_flags)
 	stacks->b = (int *)ft_memalloc(sizeof(int));
 	stacks->blen = 0;
 	stacks->operations = (char **)ft_memalloc(sizeof(char*));
-	stacks->print_flag = num_flags;
 	return (stacks);
 }
