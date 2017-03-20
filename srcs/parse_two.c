@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/16 22:26:43 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/18 17:42:49 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/20 10:59:31 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int			parse_many_args(char **argv, char ***parsed_data)
 int			parse_string(char *stack, char ***parsed_data)
 {
 	int		i;
-	char 	**temp;
+	char	**temp;
 
 	*parsed_data = ft_strsplit(stack, ' ');
 	if (ft_tablen(*parsed_data) == 0)
@@ -81,7 +81,7 @@ int			parse_input_type(int argc, char **argv, char ***parsed_data)
 	return (value_to_return);
 }
 
-void	check_duplicates(int *a, int alen)
+void		check_duplicates(int *a, int alen)
 {
 	int		i;
 	int		j;
@@ -101,8 +101,7 @@ void	check_duplicates(int *a, int alen)
 	}
 }
 
-
-int		populate_stack(char ***parsed_data, int **a)
+int			populate_stack(char ***parsed_data, int **a)
 {
 	int			array_index;
 	long long	max_check;
@@ -124,30 +123,3 @@ int		populate_stack(char ***parsed_data, int **a)
 	check_duplicates(*a, array_index);
 	return (array_index);
 }
-
-
-
-/*
-> so still need to set up the global variables
-> need to check that the array is getting populated correctly
-> handle if the array only has 2 number in it.
-> make sure negatives are sorted correctly
-> duplicates
-> make sure new format plays well with checker.
-*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

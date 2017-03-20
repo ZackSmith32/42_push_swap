@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 17:05:04 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/20 10:43:59 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/20 10:58:28 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ char	**read_operations(int *a, int alen)
 
 	tab = (char **)ft_memalloc(sizeof(char *));
 	num_ops = read_args(&tab);
-
 	return (tab);
 }
 
@@ -98,23 +97,3 @@ int		main(int argc, char **argv)
 	checker(a, alen);
 	return (0);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

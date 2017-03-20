@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 10:20:45 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/18 17:33:18 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/20 11:00:32 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ extern int	g_count_flag;
 /*
 **			parse_two.c
 */
-int					parse_input_type(int argc, char **argv, char ***parsed_data);
+int					parse_input_type(int argc, char **argv,
+						char ***parsed_data);
 int					populate_stack(char ***parsed_data, int **a);
 
 /*
