@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 12:43:59 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/18 17:28:01 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/20 12:02:38 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		ft_push_arr(int **a, int num, int len)
 	int		*new;
 	int		i;
 
-	new = (int *)ft_memalloc(sizeof(int) * len + 1);
+	new = (int *)ft_memalloc(sizeof(int) * (len + 1));
 	new[0] = num;
 	i = 1;
 	len++;
@@ -36,7 +36,7 @@ int		ft_append_arr(int **a, int num, int len)
 	int		*new;
 	int		i;
 
-	new = (int *)ft_memalloc(sizeof(int) * len + 1);
+	new = (int *)ft_memalloc(sizeof(int) * (len + 1));
 	i = 0;
 	while (i < len)
 	{
@@ -57,7 +57,7 @@ int		ft_pop_arr(int **a, int len)
 	int		i;
 
 	ret = (*a)[0];
-	new = (int *)ft_memalloc(sizeof(int) * len - 1);
+	new = (int *)ft_memalloc(sizeof(int) * (len - 1));
 	i = 1;
 	while (i < len)
 	{

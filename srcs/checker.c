@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 17:05:04 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/20 10:58:28 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/20 11:59:46 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	dispatcher(t_stack *stacks, char *op)
 	free(op);
 }
 
-char	**read_operations(int *a, int alen)
+char	**read_operations(void)
 {
 	int		num_ops;
 	char	**tab;
@@ -56,7 +56,7 @@ void	checker(int *a, int alen)
 	char		**tab;
 	int			tab_len;
 
-	tab = read_operations(a, alen);
+	tab = read_operations();
 	tab_len = ft_tablen(tab);
 	stacks = make_stack_obj(a, alen);
 	i = 0;

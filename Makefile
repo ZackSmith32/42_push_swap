@@ -6,7 +6,7 @@
 #    By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/14 23:11:31 by zsmith            #+#    #+#              #
-#    Updated: 2017/03/20 10:42:32 by zsmith           ###   ########.fr        #
+#    Updated: 2017/03/20 11:21:00 by zsmith           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,6 +77,7 @@ libs:
 
 clean:
 	/bin/rm -f $(addprefix $(SRCDIR), $(OFILES))
+	make clean -C ./lib
 
 fclean: clean
 	/bin/rm -f $(NAME)
