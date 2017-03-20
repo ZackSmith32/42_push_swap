@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 17:05:04 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/18 17:39:59 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/20 10:43:59 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,10 @@ int		main(int argc, char **argv)
 		return (0);
 	}
 	if (!parse_input_type(argc, argv, &parsed_data))
+	{
+		ft_put_error("Error\n");
 		return (0);
+	}
 	alen = populate_stack(&parsed_data, &a);
 	checker(a, alen);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 10:19:08 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/18 17:42:19 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/20 10:36:08 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ void	output(t_stack *stacks)
 		op = ft_strjoin(stacks->operations[i], "\n");
 		temp = str;
 		str = ft_strjoin(str, op);
+		free(op);
 		free(temp);
 		i++;
 	}

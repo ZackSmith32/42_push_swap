@@ -6,27 +6,11 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/15 12:09:12 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/15 19:16:10 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/20 10:10:17 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-
-void	ft_bubsort_a(int **stack, int len)
-{
-	t_stack	*new;
-	int		i;
-
-	i = 0;
-	new = (t_stack *)ft_memalloc(sizeof(int) * len);
-	ft_memcpy(new, *stack, sizeof(int) * len);
-	while (i < len - 1)
-	{
-		if (new->a[i] > new->a[i + 1] && new->a[i] != find_max(new->a, len))
-			op_s(new, 'a');
-		op_r(new, 'a');
-	}
-}
 
 void	push_back(t_stack *stacks)
 {
@@ -44,7 +28,7 @@ void	push_back(t_stack *stacks)
 		if (stacks->b[0] < stacks->a[find_min(stacks->a, stacks->alen)] &&
 				stacks->a[0] == stacks->a[find_min(stacks->a, stacks->alen)])
 			op_p(stacks, 'a');
-		else if (stacks->b[0] > stacks->a[stacks->alen - 1])
+		if (stacks->b[0] > stacks->a[stacks->alen - 1])
 			op_p(stacks, 'a');
 		else
 			op_q(stacks, 'a');
@@ -81,6 +65,8 @@ void	orientate(t_stack *stacks)
 
 void	post_sort(t_stack *stacks)
 {
+	if (stacks->alen == 2 && stacks->a[0] < stacks->a[1])
+		return ;
 	if (!sorted(stacks->a, stacks->alen))
 		op_s(stacks, 'a');
 	if (stacks->a[1] == stacks->a[find_min(stacks->a, stacks->alen)])
