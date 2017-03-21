@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/15 12:09:12 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/20 21:16:10 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/20 23:07:08 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,14 +68,17 @@ void	orientate(t_stack *stacks)
 
 void	post_sort(t_stack *stacks)
 {
-	if (stacks->alen == 2 && stacks->a[0] < stacks->a[1])
+	if (stacks->alen == 2)
+	{
+		if (stacks->a[0] < stacks->a[1])
+			return ;
+		op_s(stacks, 'a');
 		return ;
+	}
 	if (!sorted(stacks->a, stacks->alen))
 		op_s(stacks, 'a');
-	// crashed when only one item in stack
 	if (stacks->a[1] == stacks->a[find_min(stacks->a, stacks->alen)])
 		op_r(stacks, 'a');
-	// will also crash when there is only 2
 	if (stacks->a[2] == stacks->a[find_min(stacks->a, stacks->alen)])
 		op_q(stacks, 'a');
 	push_back(stacks);
