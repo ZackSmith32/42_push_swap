@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/15 12:09:12 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/20 20:35:58 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/20 21:16:10 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,12 @@ void	push_back(t_stack *stacks)
 			&op_q);
 	while (stacks->blen != 0)
 	{
+		ft_put_two_arr(stacks->a, stacks->alen, stacks->b, stacks->blen);
+		printf("\n");
 		if (stacks->b[0] < stacks->a[find_min(stacks->a, stacks->alen)] &&
 				stacks->a[0] == stacks->a[find_min(stacks->a, stacks->alen)])
 			op_p(stacks, 'a');
-		if (stacks->b[0] > stacks->a[stacks->alen - 1])
+		else if (stacks->b[0] > stacks->a[stacks->alen - 1])
 			op_p(stacks, 'a');
 		else
 			op_q(stacks, 'a');

@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 10:19:08 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/20 20:33:45 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/20 21:32:01 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ void	push_swap(int *a, int alen)
 	ft_putarr(stacks->a, stacks->alen);
 	post_sort(stacks);
 	output(stacks);
+	ft_put_two_arr(stacks->a, stacks->alen, stacks->b, stacks->blen);
 	ft_free_tab(stacks->operations);
 	free(stacks->operations);
 	free(stacks->a);

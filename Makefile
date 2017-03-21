@@ -6,12 +6,12 @@
 #    By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/14 23:11:31 by zsmith            #+#    #+#              #
-#    Updated: 2017/03/20 20:32:52 by zsmith           ###   ########.fr        #
+#    Updated: 2017/03/20 21:37:55 by zsmith           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	checker
-FLAGS	=	-Wall -Wextra -Werror #-fsanitize=address -g
+FLAGS	=	-Wall -Wextra -Werror -fsanitize=address -g
 CFILES	=	checker.c			\
 			new_lib.c			\
 			op_spr.c			\
