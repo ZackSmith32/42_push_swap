@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 12:43:59 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/20 12:02:38 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/20 14:05:26 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int		ft_pop_arr(int **a, int len)
 	int		i;
 
 	ret = (*a)[0];
-	new = (int *)ft_memalloc(sizeof(int) * (len - 1));
+	new = (int *)ft_memalloc(sizeof(int) * (len));
 	i = 1;
 	while (i < len)
 	{

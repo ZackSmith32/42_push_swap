@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/15 12:09:12 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/20 10:10:17 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/20 20:35:58 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void	orientate(t_stack *stacks)
 	{
 		if (stacks->a[0] == stacks->a[find_min(stacks->a, stacks->alen)])
 			break ;
+		printf("index 0 = %d, min = %d\n", stacks->a[0], stacks->a[find_min(stacks->a, stacks->alen)]);
 		op_q(stacks, 'a');
 	}
 }
@@ -69,10 +70,13 @@ void	post_sort(t_stack *stacks)
 		return ;
 	if (!sorted(stacks->a, stacks->alen))
 		op_s(stacks, 'a');
+	// crashed when only one item in stack
 	if (stacks->a[1] == stacks->a[find_min(stacks->a, stacks->alen)])
 		op_r(stacks, 'a');
+	// will also crash when there is only 2
 	if (stacks->a[2] == stacks->a[find_min(stacks->a, stacks->alen)])
 		op_q(stacks, 'a');
 	push_back(stacks);
+	ft_putarr(stacks->a, stacks->alen);
 	orientate(stacks);
 }

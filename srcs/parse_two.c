@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/16 22:26:43 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/20 10:59:31 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/20 14:07:00 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int			parse_many_args(char **argv, char ***parsed_data)
 int			parse_string(char *stack, char ***parsed_data)
 {
 	int		i;
-	char	**temp;
 
 	*parsed_data = ft_strsplit(stack, ' ');
 	if (ft_tablen(*parsed_data) == 0)

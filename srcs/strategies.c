@@ -6,11 +6,16 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 22:14:55 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/18 17:29:33 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/20 20:08:38 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+// repeater(stacks, make_md('a', ar), &op_r, moves);
+/*
+data.a : command to add
+data.z : number of rotations
+*/
 
 void	repeater(t_stack *stacks, t_move_dir data, void (*f)(t_stack*, char),
 			t_moves *moves)
@@ -24,8 +29,10 @@ void	repeater(t_stack *stacks, t_move_dir data, void (*f)(t_stack*, char),
 	i = 0;
 	a = data.a;
 	z = data.z;
-	anum = stacks->a[moves->af];
-	bnum = stacks->b[moves->bf];
+	moves->af++;
+	moves->af--;
+	anum = stacks->a[moves->af]; 
+	bnum = stacks->b[moves->bf]; // somehow bf == blen
 	if (a == 0)
 		return ;
 	if (g_verbose_flag != 0)
