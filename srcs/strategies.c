@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 22:14:55 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/21 00:48:51 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/22 13:09:06 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 /*
 **	the move counts, which are used as a proxy for number position, can be
 **	off if the number that needs to move needs to go back to the
-**	position is in to start. i.e. if the number in last position needs to 
-**	go back to the last position  
+**	position is in to start. i.e. if the number in last position needs to
+**	go back to the last position
 */
 
 void	repeater(t_stack *stacks, t_move_dir data, void (*f)(t_stack*, char),
@@ -31,8 +31,11 @@ void	repeater(t_stack *stacks, t_move_dir data, void (*f)(t_stack*, char),
 	i = 0;
 	a = data.a;
 	z = data.z;
-	anum = stacks->a[moves->af]; 
-	moves->bf == stacks->blen ? (bnum = stacks->blen - 1) : (bnum = (stacks->b)[moves->bf]); // somehow bf == blen
+	anum = stacks->a[moves->af];
+	if (moves->bf == stacks->blen)
+		bnum = stacks->blen - 1;
+	else
+		bnum = (stacks->b)[moves->bf];
 	if (a == 0)
 		return ;
 	if (g_verbose_flag != 0)

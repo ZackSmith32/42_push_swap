@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 10:19:08 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/22 11:35:34 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/22 13:06:17 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,10 +103,8 @@ void	push_swap(int *a, int alen)
 		eval_moves(stacks, moves);
 		make_move(stacks, moves);
 	}
-	// ft_putarr(stacks->a, stacks->alen);
 	post_sort(stacks);
 	output(stacks);
-	// ft_put_two_arr(stacks->a, stacks->alen, stacks->b, stacks->blen);
 	ft_free_tab(stacks->operations);
 	free(stacks->operations);
 	free(stacks->a);
@@ -132,7 +130,6 @@ int		main(int argc, char **argv)
 		return (0);
 	}
 	alen = populate_stack(&parsed_data, &a);
-	// ft_putarr(a, alen);
 	push_swap(a, alen);
 	return (0);
 }
