@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 10:19:08 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/20 21:32:01 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/22 11:35:34 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,22 +95,18 @@ void	push_swap(int *a, int alen)
 	stacks = make_stack_obj(a, alen);
 	if (alen > 3 && !ck_srt_ascend(stacks->a, stacks->alen))
 	{
-		ft_putarr(stacks->a, alen);
 		op_p(stacks, 'b');
 		op_p(stacks, 'b');
-		ft_putarr(stacks->a, stacks->alen);
-		ft_putarr(stacks->b, stacks->blen);
-		printf("alen = %d\n", stacks->alen);
 	}
 	while (stacks->alen > 3 && !ck_srt_ascend(stacks->a, stacks->alen))
 	{
 		eval_moves(stacks, moves);
 		make_move(stacks, moves);
 	}
-	ft_putarr(stacks->a, stacks->alen);
+	// ft_putarr(stacks->a, stacks->alen);
 	post_sort(stacks);
 	output(stacks);
-	ft_put_two_arr(stacks->a, stacks->alen, stacks->b, stacks->blen);
+	// ft_put_two_arr(stacks->a, stacks->alen, stacks->b, stacks->blen);
 	ft_free_tab(stacks->operations);
 	free(stacks->operations);
 	free(stacks->a);
@@ -136,7 +132,7 @@ int		main(int argc, char **argv)
 		return (0);
 	}
 	alen = populate_stack(&parsed_data, &a);
-	ft_putarr(a, alen);
+	// ft_putarr(a, alen);
 	push_swap(a, alen);
 	return (0);
 }

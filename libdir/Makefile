@@ -6,12 +6,12 @@
 #    By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/09/22 16:32:25 by zsmith            #+#    #+#              #
-#    Updated: 2017/03/20 11:19:56 by zsmith           ###   ########.fr        #
+#    Updated: 2017/03/22 12:24:14 by zsmith           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	libftprintf.a
-FLAGS	=	-c -Wall -Wextra -Werror
+FLAGS	=	-Wall -Wextra -Werror
 CFILES	=	ft_printf.c			\
 			funx__flag.c		\
 			funx__help.c		\
@@ -30,27 +30,24 @@ CFILES	=	ft_printf.c			\
 			glob.c				\
 
 SRCDIR  =	srcs/
+OBJDIR	=	../obj/
 HDIR	=	includes/
-OFILES	=	$(CFILES:.c=.o)
+OFILES	=	$(addprefix $(OBJDIR), $(CFILES:.c=.o))
 
 .PHONY: all $(NAME) main complib clean flcean re
 
 all: $(NAME)
 
-$(NAME): comp_printf
-	make re -C ./includes/libft 
-	libtool -static -o $@ libfunc.a ./includes/libft/libft.a
+$(OBJDIR)%.o: $(SRCDIR)%.c
+	gcc $(FLAGS) -c $< -o $@
 
-comp_printf:
-	gcc $(FLAGS) $(addprefix $(SRCDIR),$(CFILES))
-	ar rc libfunc.a $(OFILES)
+$(NAME): $(OFILES)
+	ar rc $@ $(OFILES)
 
 clean:
-	/bin/rm -f $(OFILES)
-	rm -f libfunc.a
+	@ /bin/rm -f $(OFILES)
 
 fclean: clean
 	@ /bin/rm -f $(NAME)
-	make fclean -C ./includes/libft
 
 re: fclean all

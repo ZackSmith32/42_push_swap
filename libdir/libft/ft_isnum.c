@@ -1,21 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   ft_isnum.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/25 21:25:56 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/17 01:06:05 by zsmith           ###   ########.fr       */
+/*   Created: 2017/03/09 14:27:50 by zsmith            #+#    #+#             */
+/*   Updated: 2017/03/17 00:29:31 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_isdigit(int c)
+int		ft_isnum(char *str)
 {
-	if (c >= 48 && c <= 57)
-		return (1);
-	else
-		return (0);
+	int		i;
+
+	i = 0;
+	if (str[i] == '-' || str[i] == '+')
+		i++;
+	while (str[i] != 0)
+	{
+		if (!ft_isdigit(str[i]))
+			return (0);
+		i++;
+	}
+	return (1);
 }

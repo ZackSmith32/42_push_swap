@@ -6,12 +6,15 @@
 #    By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/14 23:11:31 by zsmith            #+#    #+#              #
-#    Updated: 2017/03/21 15:39:42 by zsmith           ###   ########.fr        #
+#    Updated: 2017/03/22 12:23:54 by zsmith           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	push_swap
-FLAGS	=	-Wall -Wextra -Werror -fsanitize=address -g
+CHECKER	=	checker
+FLAGS	=	-Wall -Wextra -Werror
+FSAN	=	-fsanitize=address -g
+
 KFILES	=	checker.o			\
 			new_lib.o			\
 			op_spr.o			\
@@ -21,8 +24,8 @@ KFILES	=	checker.o			\
 			checker_support.o	\
 			parse_two.o			\
 			globals.o			\
+			test_mallocwrap.o	\
 
-			# test_mallocwrap.c	\
 
 PSFILES =	push_swap.o			\
 			new_lib.o			\
@@ -37,6 +40,8 @@ PSFILES =	push_swap.o			\
 			print_funx.o		\
 			parse_two.o			\
 			globals.o			\
+			# test_mallocwrap.o	\
+
 
 CFILES =	push_swap.c			\
 			new_lib.c			\
@@ -53,37 +58,43 @@ CFILES =	push_swap.c			\
 			helpers.c			\
 			checker_support.c	\
 			parse_two.c			\
+			test_mallocwrap.c	\
 			globals.c			\
+
+LIBS	=	libft/libft.a				
+LIBS	+=	libftprintf.a
 
 SRCDIR  =	srcs/
 OBJDIR	=	obj/
 HDIR	=	includes/
+LIBDIR	=	libdir/
+LIBFILES=	$(addprefix $(LIBDIR), $(LIBS))
 OFILES	=	$(addprefix $(OBJDIR), $(CFILES:.c=.o))
 
 .PHONY: all $(NAME) clean flcean re
 
-all: $(NAME) checker
+all: $(NAME) $(CHECKER) 
 
 $(OBJDIR)%.o : $(SRCDIR)%.c 
 	gcc $(FLAGS) -I $(HDIR) -c $< -o $@ 
 
-$(NAME): $(OFILES)
-	gcc $(addprefix $(OBJDIR), $(PSFILES)) -I $(HDIR) -L. lib/libftprintf.a -o $@
+$(NAME): $(OFILES) 
+	gcc  $(FSAN) -I $(HDIR) -L. $(LIBFILES) \
+		$(addprefix $(OBJDIR), $(PSFILES)) -o $@
 
-checker: $(OFILES)
-	gcc $(addprefix $(OBJDIR), $(KFILES)) -I $(HDIR) -L. lib/libftprintf.a -o $@
+$(CHECKER): $(OFILES)
+	gcc $(FSAN) $(addprefix $(OBJDIR), $(KFILES)) \
+		-I $(HDIR) -L. $(LIBFILES) -o $@
 	
 libs:
 	make -C ./lib
 
 clean:
-	/bin/rm -f $(OBJFILES)
-	make clean -C ./lib
+	/bin/rm -f $(OFILES)
 
 fclean: clean
 	/bin/rm -f $(NAME)
 	/bin/rm -f checker
-	make fclean -C ./lib
 
 re: fclean all
 

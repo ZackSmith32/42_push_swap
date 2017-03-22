@@ -6,7 +6,7 @@
 #    By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/09/22 16:32:25 by zsmith            #+#    #+#              #
-#    Updated: 2017/03/09 14:30:18 by zsmith           ###   ########.fr        #
+#    Updated: 2017/03/22 11:00:00 by zsmith           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -91,7 +91,7 @@ CFILES	=	ft_memset.c 	\
 			free_gnl.c		\
 			ft_puterror.c	\
 			ft_isnum.c		\
-			
+
 HFILES	=	libft.h
 OFILES	=	$(CFILES:.c=.o)
 
@@ -99,14 +99,11 @@ OFILES	=	$(CFILES:.c=.o)
 
 all: $(NAME)
 
-$(NAME): complib main
+%.o: %.c
+	gcc $(FLAGS) $< -o $@ 
 
-main:	
-	@ ## gcc main.c -L. -lft
-
-complib:
-	@ gcc $(FLAGS) $(CFILES) 
-	@ ar rc $(NAME) $(OFILES)
+$(NAME): $(OFILES)
+	ar rc $(NAME) $(OFILES)
 
 clean:
 	@ /bin/rm -f $(OFILES)
@@ -115,3 +112,31 @@ fclean: clean
 	@ /bin/rm -f $(NAME)
 
 re: fclean all
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

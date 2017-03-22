@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/14 21:00:51 by zsmith            #+#    #+#             */
-/*   Updated: 2016/12/17 19:32:36 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/02/20 15:11:33 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,5 +112,6 @@ void	pop_color(t_conv_obj *obj, char **sentinel)
 	ft_strncpy(color, (*sentinel), i);
 	color[i + 1] = '\0';
 	(*sentinel) += (i + 1);
-	obj->color = ft_strdup(color);
+	// obj->color = ft_strdup(color);
+	obj->color = color;
 }
