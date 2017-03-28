@@ -38,7 +38,7 @@ void		fun_stacks(t_stack *stacks, int anum, int bnum)
 	while (j < i)
 	{
 		if (stacks->a[j] == anum && j < stacks->alen)
-			ft_printf("%@green@5d ", stacks->a[j]);
+			ft_printf("%@cyan@5d ", stacks->a[j]);
 		else if (j < stacks->alen)
 			ft_printf("%5d ", stacks->a[j]);
 		else

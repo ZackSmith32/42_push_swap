@@ -6,7 +6,7 @@
 #    By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/14 23:11:31 by zsmith            #+#    #+#              #
-#    Updated: 2017/03/22 12:23:54 by zsmith           ###   ########.fr        #
+#    Updated: 2017/03/22 13:10:23 by zsmith           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,6 @@ KFILES	=	checker.o			\
 			checker_support.o	\
 			parse_two.o			\
 			globals.o			\
-			test_mallocwrap.o	\
 
 
 PSFILES =	push_swap.o			\
@@ -40,7 +39,6 @@ PSFILES =	push_swap.o			\
 			print_funx.o		\
 			parse_two.o			\
 			globals.o			\
-			# test_mallocwrap.o	\
 
 
 CFILES =	push_swap.c			\
@@ -76,7 +74,7 @@ OFILES	=	$(addprefix $(OBJDIR), $(CFILES:.c=.o))
 all: $(NAME) $(CHECKER) 
 
 $(OBJDIR)%.o : $(SRCDIR)%.c 
-	gcc $(FLAGS) -I $(HDIR) -c $< -o $@ 
+	gcc $(FLAGS) -I $(HDIR) -c $< -o $@ $(FSAN)
 
 $(NAME): $(OFILES) 
 	gcc  $(FSAN) -I $(HDIR) -L. $(LIBFILES) \
