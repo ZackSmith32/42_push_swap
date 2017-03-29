@@ -77,14 +77,16 @@ $(OBJDIR)%.o : $(SRCDIR)%.c
 	gcc $(FLAGS) -I $(HDIR) -c $< -o $@ $(FSAN)
 
 $(NAME): $(OFILES) 
+	make -C ./libdir
+	make -C ./libdir/libft
 	gcc  $(FSAN) -I $(HDIR) -L. $(LIBFILES) \
 		$(addprefix $(OBJDIR), $(PSFILES)) -o $@
-	make -C ./libdir
 
 $(CHECKER): $(OFILES)
+	make -C ./libdir
+	make -C ./libdir/libft
 	gcc $(FSAN) $(addprefix $(OBJDIR), $(KFILES)) \
 		-I $(HDIR) -L. $(LIBFILES) -o $@
-	make -C ./libdir
 	
 clean:
 	/bin/rm -f $(OFILES)
