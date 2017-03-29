@@ -65,6 +65,8 @@ void	orientate(t_stack *stacks)
 
 void	post_sort(t_stack *stacks)
 {
+	if (stacks->alen == 1)
+		return ;
 	if (stacks->alen == 2)
 	{
 		if (stacks->a[0] < stacks->a[1])
