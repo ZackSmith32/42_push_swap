@@ -13,7 +13,7 @@
 NAME	=	push_swap
 CHECKER	=	checker
 FLAGS	=	-Wall -Wextra -Werror
-FSAN	=	-fsanitize=address -g
+FSAN	=	#-fsanitize=address -g
 
 KFILES	=	checker.o			\
 			new_lib.o			\
@@ -73,20 +73,19 @@ OFILES	=	$(addprefix $(OBJDIR), $(CFILES:.c=.o))
 
 all: $(NAME) $(CHECKER) 
 
-$(OBJDIR)%.o : $(SRCDIR)%.c 
+$(OBJDIR)%.o : $(SRCDIR)%.c
 	gcc $(FLAGS) -I $(HDIR) -c $< -o $@ $(FSAN)
 
 $(NAME): $(OFILES) 
 	gcc  $(FSAN) -I $(HDIR) -L. $(LIBFILES) \
 		$(addprefix $(OBJDIR), $(PSFILES)) -o $@
+	make -C ./libdir
 
 $(CHECKER): $(OFILES)
 	gcc $(FSAN) $(addprefix $(OBJDIR), $(KFILES)) \
 		-I $(HDIR) -L. $(LIBFILES) -o $@
+	make -C ./libdir
 	
-libs:
-	make -C ./lib
-
 clean:
 	/bin/rm -f $(OFILES)
 
